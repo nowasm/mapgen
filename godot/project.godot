@@ -1,0 +1,13 @@
+[application]
+
+config/name="Mapgen Importer Test"
+run/main_scene=""
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mapgen_importer/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
