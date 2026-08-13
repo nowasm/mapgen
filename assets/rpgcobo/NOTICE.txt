@@ -1,0 +1,229 @@
+
+RPG-Cobo uses third-party softwares or other resources that is able to redistribute under 
+their licenses.
+
+------------------------------------------------------------------------------------------------
+
+Bullet Continuous Collision Detection and Physics Library / zlib License
+http://bulletphysics.org
+
+------------------------------------------------------------------------------------------------
+
+FreeType / FreeType License
+http://www.freetype.org/
+
+Portions of this software are copyright © 2023 The FreeType
+Project (www.freetype.org).  All rights reserved.
+https://gitlab.freedesktop.org/freetype/freetype/-/blob/master/docs/FTL.TXT
+
+------------------------------------------------------------------------------------------------
+
+libpng / PNG Reference Library License version 2
+http://www.libpng.org/pub/png/libpng.html
+
+------------------------------------------------------------------------------------------------
+
+libjpeg / IJG License
+https://jpegclub.org/
+
+------------------------------------------------------------------------------------------------
+
+libwebp
+http://developers.google.com/speed/webp
+
+Copyright (c) 2010, Google Inc. All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+  * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+  * Neither the name of Google nor the names of its contributors may
+    be used to endorse or promote products derived from this software
+    without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+------------------------------------------------------------------------------------------------
+
+zlib / zlib License
+http://www.zlib.net/
+
+------------------------------------------------------------------------------------------------
+
+picotls / MIT license
+https://github.com/h2o/picotls
+
+------------------------------------------------------------------------------------------------
+
+libogg / BSD license
+libvorbis / BSD license
+https://xiph.org/vorbis/
+
+------------------------------------------------------------------------------------------------
+
+Zstandard / BSD License
+https://facebook.github.io/zstd/
+
+------------------------------------------------------------------------------------------------
+
+pffft
+https://github.com/marton78/pffft
+
+Copyright (c) 2020  Dario Mambro ( dario.mambro@gmail.com )
+Copyright (c) 2019  Hayati Ayguen ( h_ayguen@web.de )
+Copyright (c) 2013  Julien Pommier ( pommier@modartt.com )
+
+Copyright (c) 2004 the University Corporation for Atmospheric
+Research ("UCAR"). All rights reserved. Developed by NCAR's
+Computational and Information Systems Laboratory, UCAR,
+www.cisl.ucar.edu.
+
+Redistribution and use of the Software in source and binary forms,
+with or without modification, is permitted provided that the
+following conditions are met:
+
+- Neither the names of NCAR's Computational and Information Systems
+Laboratory, the University Corporation for Atmospheric Research,
+nor the names of its sponsors or contributors may be used to
+endorse or promote products derived from this Software without
+specific prior written permission.  
+
+- Redistributions of source code must retain the above copyright
+notices, this list of conditions, and the disclaimer below.
+
+- Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions, and the disclaimer below in the
+documentation and/or other materials provided with the
+distribution.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE CONTRIBUTORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
+SOFTWARE.
+
+------------------------------------------------------------------------------------------------
+
+open-vcdiff / Apache License Version 2.0
+https://github.com/google/open-vcdiff
+http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------------------------
+
+cmgen - filament / Apache License Version 2.0
+https://github.com/google/filament
+http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------------------------
+
+toktx / Apache License Version 2.0
+https://github.khronos.org/KTX-Software/ktxtools/toktx.html
+http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------------------------
+
+Snapdragon™ Game Super Resolution / BSD 3-clause “New” or “Revised” License
+https://github.com/SnapdragonStudios/snapdragon-gsr/blob/main/LICENSE
+
+------------------------------------------------------------------------------------------------
+
+Twitter Emoji / MIT license
+https://github.com/twitter/twemoji
+
+------------------------------------------------------------------------------------------------
+
+SourceHanSans Font / SIL OPEN FONT LICENSE Version 1.1
+https://github.com/adobe-fonts/source-han-sans
+
+------------------------------------------------------------------------------------------------
+
+MartianMono Font / SIL OPEN FONT LICENSE Version 1.1
+https://github.com/evilmartians/mono
+
+------------------------------------------------------------------------------------------------
+
+RobotoMono Font / Apache License Version 2.0
+https://github.com/googlefonts/RobotoMono
+http://www.apache.org/licenses/LICENSE-2.0
+
+------------------------------------------------------------------------------------------------
+
+Material Icons Font / Apache License Version 2.0
+https://github.com/google/material-design-icons
+http://www.apache.org/licenses/LICENSE-2.0
+
+
+------------------------------------------------------------------------------------------------
+
+Skybox Textures / CC0 1.0 Universal
+https://https://polyhaven.com/license
+
+------------------------------------------------------------------------------------------------
+
+Music / Creative Commons BY-ND 4.0
+Music files listed below are licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License.
+https://creativecommons.org/licenses/by-nd/4.0
+
+Copyright (c) 2025 CyberStep, Inc. (https://corp.cyberstep.com/)
+Created by Roi Kamiie (https://x.com/kamiie1212), Sakura, Yukari, and Tomonori
+
+Included music files:
+battle1.ogg
+battle2.ogg
+battle3.ogg
+dungeon1.ogg
+dungeon2.ogg
+event1.ogg
+event2.ogg
+event3.ogg
+field2.ogg
+field3.ogg
+field4.ogg
+lastdungeon.ogg
+shop.ogg
+town1.ogg
+town2.ogg
+victory.ogg
+
+Music / Creative Commons BY 4.0
+Music files listed below are licensed under the Creative Commons Attribution 4.0 International License.
+https://creativecommons.org/licenses/by/4.0
+
+Created by Roi Kamiie (https://x.com/kamiie1212), Sakura, Yukari, and Tomonori
+
+Included music files:
+castle.ogg
+field1.ogg
+field5.ogg
+town3.ogg
+
+------------------------------------------------------------------------------------------------
+
+rpgcobo.exe, sakanagl.dll, voxengine.dll, popen_s.dll / RPG-Cobo Binary License Version 1.0
+Copyright (c) 2015-2025 Yutaka Owada, SuperShark,KK. All rights reserved.
+
+Redistribution and use of the Software in binary forms for any purpose, whether it be personal,
+academic, or commercial is permitted provided that the following conditions are met.
+1. You are not permitted to modify, reverse engineer, or disassemble any native code in this software.
+Any such actions are strictly prohibited.
+2. This software is provided "AS IS", with no warranty or guarantee of any kinds. In no event will
+the authors be held liable for any damages arising from the use of this software.
+3. Neither the name of licensor nor the names of its contributors may be used to endorse or promote 
+products derived from this software without specific prior written permission.

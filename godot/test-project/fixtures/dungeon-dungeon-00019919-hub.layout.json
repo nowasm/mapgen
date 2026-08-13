@@ -105,7 +105,7 @@
     "handedness": "right"
   },
   "assetPack": {
-    "id": "placeholder-kit",
+    "id": "rpgcobo-dungeon-stone",
     "version": "1"
   },
   "rooms": [
@@ -5226,9 +5226,7 @@
     }
   ],
   "diagnostics": {
-    "warnings": [
-      "Multi-room layout uses procedural placeholder modules."
-    ],
+    "warnings": [],
     "topology": {
       "mode": "hub",
       "roomCount": 11,
@@ -5238,5 +5236,5 @@
       "attempts": 16
     }
   },
-  "glbSha256": "55fbf293cba79523c0c25a1fff2b947b682bd3677571f4253a3dea9b37e284eb"
+  "glbSha256": "7b152a3804bd7955c5a02670be303658944ad04a4891bc8d8c27f1a29528aa1d"
 }

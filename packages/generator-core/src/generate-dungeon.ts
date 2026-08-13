@@ -36,7 +36,7 @@ export function generateDungeon(options: GenerateDungeonOptions): DungeonLayout 
     resolvedParameters,
     grid: { width: resolvedParameters.width, height: resolvedParameters.height, cellSize: 1 },
     coordinateSystem: { up: "Y", forward: "-Z", handedness: "right" },
-    assetPack: { id: "placeholder-kit", version: "1" },
+    assetPack: { id: "rpgcobo-dungeon-stone", version: "1" },
     rooms: placed.rooms,
     connections: placed.connections,
     corridors: placed.corridors,
@@ -45,7 +45,7 @@ export function generateDungeon(options: GenerateDungeonOptions): DungeonLayout 
     modules: built.modules,
     colliders: built.colliders,
     diagnostics: {
-      warnings: ["Multi-room layout uses procedural placeholder modules."],
+      warnings: [],
       topology: {
         mode: graph.mode,
         roomCount: graph.nodes.length,

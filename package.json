@@ -7,8 +7,9 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --filter @mapgen/web dev",
+    "assets:build": "tsx tools/build-rpgcobo-visual-pack.ts",
     "generate:fixture": "tsx tools/generate-dungeon-fixture.ts",
-    "test": "pnpm -r --if-present test",
+    "test": "vitest run tools && pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },
   "devDependencies": {

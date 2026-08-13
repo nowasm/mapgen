@@ -98,6 +98,7 @@ export function App() {
           <div><dt>Grid</dt><dd>{selected.grid.width} × {selected.grid.height}</dd></div><div><dt>Rooms</dt><dd>{String(selected.rooms.length).padStart(2, "0")}</dd></div>
           <div><dt>Edges / Loops</dt><dd>{topology.edgeCount} / {topology.loopCount}</dd></div><div><dt>Dead Ends</dt><dd>{topology.deadEndCount}</dd></div>
           <div><dt>Corridor</dt><dd>{resolved.corridorWidth} m</dd></div><div><dt>Colliders</dt><dd>{String(selected.colliders.length).padStart(2, "0")}</dd></div>
+          <div><dt>Visual Pack</dt><dd>{selected.assetPack.id}</dd></div>
           <div><dt>Doors</dt><dd>{selected.doors.filter(({ open }) => open).length} OPEN / {selected.doors.filter(({ open }) => !open).length} SHUT</dd></div>
         </dl>
         <div className="export-box">

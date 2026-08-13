@@ -36,5 +36,5 @@ MAPGEN_GODOT_SMOKE_OK colliders=149 scene=user://mapgen-smoke-dungeon.tscn
 
 - 第一版只生成单层、无屋顶、普通模块化 3D 地牢。
 - 门状态在生成时固定，不提供运行时开关逻辑。
-- 当前使用程序化占位材质；RPG-Cobo 方块/材质资源的授权清单与替换仍是后续工作。
+- 墙、地板和门已使用 RPG-Cobo VOX 派生视觉包；其他装饰物仍是后续工作。
 - 尚未加入第三人称斜俯视角色试玩控制器；碰撞与出生点已经可直接供 Godot 角色使用。

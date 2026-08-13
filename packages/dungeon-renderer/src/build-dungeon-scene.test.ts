@@ -54,4 +54,20 @@ describe("buildDungeonScene", () => {
     expect(result.counts.walls).toBeGreaterThan(layout.rooms.length * 4);
     expect(result.counts.doors).toBe(layout.doors.length * 2);
   });
+
+  it("uses traceable RPG-Cobo voxel-derived visual geometry", () => {
+    const layout = generateDungeon({ seed: 104729 });
+    const { root } = buildDungeonScene(layout);
+    const wall = root.getObjectByName("Walls")!.children.find((child) => child.userData.kind === "wall") as Mesh;
+    const door = root.getObjectByName("Doors")!.children.find((child) => child.userData.kind === "door-closed") as Mesh;
+
+    expect(root.userData).toEqual(expect.objectContaining({
+      visualPackId: "rpgcobo-dungeon-stone",
+      visualPackLicense: "Apache-2.0",
+    }));
+    expect(wall.userData.sourceModel).toBe("brick1/mid");
+    expect(wall.geometry.getAttribute("color").count).toBeGreaterThan(24);
+    expect(door.userData.sourceModel).toBe("door1/close");
+    expect(door.geometry.getAttribute("position").count).toBeGreaterThan(36);
+  });
 });
