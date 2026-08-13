@@ -9,6 +9,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@mapgen/generator-core": "workspace:*",
     "@mapgen/layout-schema": "workspace:*",
     "three": "0.185.1"
   },

@@ -63,6 +63,9 @@ importers:
 
   packages/dungeon-renderer:
     dependencies:
+      '@mapgen/generator-core':
+        specifier: workspace:*
+        version: link:../generator-core
       '@mapgen/layout-schema':
         specifier: workspace:*
         version: link:../layout-schema
