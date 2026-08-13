@@ -19,6 +19,7 @@ const FLOOR_THICKNESS = 0.2;
 const WALL_HEIGHT = 2.5;
 const WALL_THICKNESS = 0.3;
 const FRAME_HEIGHT = 0.4;
+const DOOR_CLEAR_HEIGHT = WALL_HEIGHT - FRAME_HEIGHT;
 
 interface Opening {
   readonly start: number;
@@ -117,7 +118,11 @@ function addRoomWalls(
   const verticalSides = [["west", minX], ["east", maxX]] as const;
   for (const [side, x] of verticalSides) {
     let index = 0;
-    for (const segment of subtractOpenings(minZ, maxZ, openings[side])) {
+    for (const segment of subtractOpenings(
+      minZ + WALL_THICKNESS / 2,
+      maxZ - WALL_THICKNESS / 2,
+      openings[side],
+    )) {
       addBox(modules, colliders, `${room.id}-${side}-wall-${index}`, "wall", [x, WALL_HEIGHT / 2, (segment.start + segment.end) / 2], [WALL_THICKNESS, WALL_HEIGHT, segment.end - segment.start]);
       index += 1;
     }
@@ -136,11 +141,13 @@ function addCorridor(
   const minZ = corridor.z - parameters.height / 2;
   const maxZ = corridor.z + corridor.depth - parameters.height / 2;
   if (corridor.width > corridor.depth) {
-    addBox(modules, colliders, `${corridor.id}-wall-a`, "wall", [(minX + maxX) / 2, WALL_HEIGHT / 2, minZ], [corridor.width, WALL_HEIGHT, WALL_THICKNESS]);
-    addBox(modules, colliders, `${corridor.id}-wall-b`, "wall", [(minX + maxX) / 2, WALL_HEIGHT / 2, maxZ], [corridor.width, WALL_HEIGHT, WALL_THICKNESS]);
+    const wallLength = corridor.width - WALL_THICKNESS;
+    addBox(modules, colliders, `${corridor.id}-wall-a`, "wall", [(minX + maxX) / 2, WALL_HEIGHT / 2, minZ], [wallLength, WALL_HEIGHT, WALL_THICKNESS]);
+    addBox(modules, colliders, `${corridor.id}-wall-b`, "wall", [(minX + maxX) / 2, WALL_HEIGHT / 2, maxZ], [wallLength, WALL_HEIGHT, WALL_THICKNESS]);
   } else {
-    addBox(modules, colliders, `${corridor.id}-wall-a`, "wall", [minX, WALL_HEIGHT / 2, (minZ + maxZ) / 2], [WALL_THICKNESS, WALL_HEIGHT, corridor.depth]);
-    addBox(modules, colliders, `${corridor.id}-wall-b`, "wall", [maxX, WALL_HEIGHT / 2, (minZ + maxZ) / 2], [WALL_THICKNESS, WALL_HEIGHT, corridor.depth]);
+    const wallLength = corridor.depth - WALL_THICKNESS;
+    addBox(modules, colliders, `${corridor.id}-wall-a`, "wall", [minX, WALL_HEIGHT / 2, (minZ + maxZ) / 2], [WALL_THICKNESS, WALL_HEIGHT, wallLength]);
+    addBox(modules, colliders, `${corridor.id}-wall-b`, "wall", [maxX, WALL_HEIGHT / 2, (minZ + maxZ) / 2], [WALL_THICKNESS, WALL_HEIGHT, wallLength]);
   }
 }
 
@@ -150,30 +157,54 @@ function addDoor(
   modules: ModuleDefinition[],
   colliders: ColliderDefinition[],
 ): void {
-  const size: Vec3 = [WALL_THICKNESS, WALL_HEIGHT, parameters.corridorWidth];
+  const clearWidth = parameters.corridorWidth - WALL_THICKNESS * 2;
+  const size: Vec3 = [WALL_THICKNESS, DOOR_CLEAR_HEIGHT, clearWidth];
+  const leafCenter: Vec3 = [door.position[0], DOOR_CLEAR_HEIGHT / 2, door.position[2]];
   modules.push({
     id: `module-${door.id}`,
     kind: door.open ? "door-open" : "door-closed",
-    center: door.position,
+    center: leafCenter,
     size,
     rotationY: door.rotationY + (door.open ? Math.PI / 2 : 0),
   });
-  modules.push({
-    id: `module-${door.id}-frame`,
-    kind: "door-frame",
-    center: [door.position[0], WALL_HEIGHT - FRAME_HEIGHT / 2, door.position[2]],
-    size: [WALL_THICKNESS, FRAME_HEIGHT, parameters.corridorWidth + WALL_THICKNESS * 2],
-    rotationY: door.rotationY,
-  });
-  colliders.push({
-    id: `collider-${door.id}-frame`,
-    kind: "wall",
-    center: [door.position[0], WALL_HEIGHT - FRAME_HEIGHT / 2, door.position[2]],
-    size: [WALL_THICKNESS, FRAME_HEIGHT, parameters.corridorWidth + WALL_THICKNESS * 2],
-    rotationY: door.rotationY,
-  });
+
+  const framePieces = [
+    {
+      name: "lintel",
+      center: [door.position[0], WALL_HEIGHT - FRAME_HEIGHT / 2, door.position[2]] as Vec3,
+      size: [WALL_THICKNESS, FRAME_HEIGHT, parameters.corridorWidth] as Vec3,
+    },
+    ...([-1, 1] as const).map((direction, index) => {
+      const offset = direction * (parameters.corridorWidth / 2 - WALL_THICKNESS / 2);
+      return {
+        name: `jamb-${index === 0 ? "a" : "b"}`,
+        center: [
+          door.position[0] + Math.sin(door.rotationY) * offset,
+          DOOR_CLEAR_HEIGHT / 2,
+          door.position[2] + Math.cos(door.rotationY) * offset,
+        ] as Vec3,
+        size: [WALL_THICKNESS, DOOR_CLEAR_HEIGHT, WALL_THICKNESS] as Vec3,
+      };
+    }),
+  ];
+  for (const frame of framePieces) {
+    modules.push({
+      id: `module-${door.id}-frame-${frame.name}`,
+      kind: "door-frame",
+      center: frame.center,
+      size: frame.size,
+      rotationY: door.rotationY,
+    });
+    colliders.push({
+      id: `collider-${door.id}-frame-${frame.name}`,
+      kind: "wall",
+      center: frame.center,
+      size: frame.size,
+      rotationY: door.rotationY,
+    });
+  }
   if (!door.open) {
-    colliders.push({ id: `collider-${door.id}`, kind: "door", center: door.position, size, rotationY: door.rotationY });
+    colliders.push({ id: `collider-${door.id}`, kind: "door", center: leafCenter, size, rotationY: door.rotationY });
   }
 }
 

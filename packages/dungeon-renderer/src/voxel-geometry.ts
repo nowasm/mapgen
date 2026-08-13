@@ -58,6 +58,7 @@ export function createPatternedBoxGeometry(size: Vec3, model: PackedVoxModel, ki
   const hz = depth / 2;
   const fallback = dominantColor(model);
 
+  const wallAlongX = kind === "wall" && width >= depth;
   if (kind === "floor") {
     const top = surfaceMap(model, "top");
     const nx = Math.max(1, Math.min(96, Math.ceil(width)));
@@ -71,8 +72,7 @@ export function createPatternedBoxGeometry(size: Vec3, model: PackedVoxModel, ki
       builder.quad([x0, hy, z1], [x1, hy, z1], [x1, hy, z0], [x0, hy, z0], color);
     }
   } else {
-    const alongX = width >= depth;
-    const length = alongX ? width : depth;
+    const length = wallAlongX ? width : depth;
     const horizontalCells = Math.max(1, Math.min(160, Math.ceil(length * 2)));
     const verticalCells = Math.max(1, Math.min(24, Math.ceil(height * 2)));
     const front = surfaceMap(model, "front");
@@ -84,7 +84,7 @@ export function createPatternedBoxGeometry(size: Vec3, model: PackedVoxModel, ki
       const y1 = -hy + height * (row + 1) / verticalCells;
       const sourceX = column % model.size[0];
       const sourceZ = row % model.size[2];
-      if (alongX) {
+      if (wallAlongX) {
         builder.quad([p0, y0, hz], [p1, y0, hz], [p1, y1, hz], [p0, y1, hz], front.get(`${sourceX},${sourceZ}`) ?? fallback);
         builder.quad([p1, y0, -hz], [p0, y0, -hz], [p0, y1, -hz], [p1, y1, -hz], back.get(`${sourceX},${sourceZ}`) ?? fallback);
       } else {
@@ -94,12 +94,20 @@ export function createPatternedBoxGeometry(size: Vec3, model: PackedVoxModel, ki
     }
   }
 
+  // Patterned faces are already complete surfaces. Only add the remaining
+  // caps here; drawing a fallback quad on the same plane causes Z-fighting.
   builder.quad([-hx, -hy, hz], [-hx, -hy, -hz], [hx, -hy, -hz], [hx, -hy, hz], fallback);
-  builder.quad([-hx, hy, -hz], [-hx, hy, hz], [hx, hy, hz], [hx, hy, -hz], fallback);
-  builder.quad([-hx, -hy, -hz], [-hx, hy, -hz], [hx, hy, -hz], [hx, -hy, -hz], fallback);
-  builder.quad([hx, -hy, hz], [hx, hy, hz], [-hx, hy, hz], [-hx, -hy, hz], fallback);
-  builder.quad([-hx, -hy, hz], [-hx, hy, hz], [-hx, hy, -hz], [-hx, -hy, -hz], fallback);
-  builder.quad([hx, -hy, -hz], [hx, hy, -hz], [hx, hy, hz], [hx, -hy, hz], fallback);
+  if (kind === "wall") {
+    builder.quad([-hx, hy, -hz], [-hx, hy, hz], [hx, hy, hz], [hx, hy, -hz], fallback);
+  }
+  if (kind === "floor" || !wallAlongX) {
+    builder.quad([-hx, -hy, -hz], [-hx, hy, -hz], [hx, hy, -hz], [hx, -hy, -hz], fallback);
+    builder.quad([hx, -hy, hz], [hx, hy, hz], [-hx, hy, hz], [-hx, -hy, hz], fallback);
+  }
+  if (kind === "floor" || wallAlongX) {
+    builder.quad([-hx, -hy, hz], [-hx, hy, hz], [-hx, hy, -hz], [-hx, -hy, -hz], fallback);
+    builder.quad([hx, -hy, -hz], [hx, hy, -hz], [hx, hy, hz], [hx, -hy, hz], fallback);
+  }
   return builder.build();
 }
 

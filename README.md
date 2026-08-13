@@ -47,7 +47,7 @@ pnpm generate:fixture
   --headless --path godot --script res://test-project/tests/import_smoke_test.gd
 ```
 
-固定样本 seed 104729 当前生成 11 个 Hub 房间和 149 个 Godot 原生碰撞体。详细证据见 [多房间端到端验证记录](docs/verification/multi-room-end-to-end.md)。
+固定样本 seed 104729 当前生成 11 个 Hub 房间和 197 个 Godot 原生碰撞体。详细证据见 [多房间端到端验证记录](docs/verification/multi-room-end-to-end.md)。
 
 `pnpm assets:build` 仅在需要从相邻的 `../rpgcobo-tool` 更新视觉包时执行；正常安装、生成、测试和导出使用仓库内已经转换好的 [视觉包](assets/rpgcobo/dungeon-visual-pack.json)。来源、哈希、修改说明及 Apache-2.0 归属见 [资源清单](assets/rpgcobo/SOURCE_MANIFEST.md)。
 

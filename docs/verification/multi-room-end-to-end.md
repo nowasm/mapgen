@@ -4,7 +4,7 @@
 - Godot：4.6.2 stable
 - 固定 Seed：104729
 - 固定拓扑：Hub
-- 样本规模：11 个房间、12 条走廊、24 扇门、149 个碰撞体
+- 样本规模：11 个房间、12 条走廊、24 扇门、197 个碰撞体
 
 ## 已验证链路
 
@@ -29,8 +29,10 @@ Godot 无界面测试命令：
 关键输出：
 
 ```text
-MAPGEN_GODOT_SMOKE_OK colliders=149 scene=user://mapgen-smoke-dungeon.tscn
+MAPGEN_GODOT_SMOKE_OK colliders=197 scene=user://mapgen-smoke-dungeon.tscn
 ```
+
+墙和楼板的图案面不再叠加整面封盖；房间墙角与走廊端点采用无正体积相交的贴合接缝，门框拆成两根立柱和一根横梁。对应回归测试会直接检查共面三角形数量、全高墙盒相交和门洞净尺寸。
 
 ## 当前边界
 

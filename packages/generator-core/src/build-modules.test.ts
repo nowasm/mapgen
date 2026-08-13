@@ -51,4 +51,39 @@ describe("doorway-aware modular geometry", () => {
       expect(layout.colliders.every(({ size }) => size.every((component) => component > 0))).toBe(true);
     }
   });
+
+  it("butt-joins full-height wall boxes instead of intersecting them", () => {
+    const layout = generateDungeon({ seed: 42 });
+    const walls = layout.modules.filter(({ kind, size }) => kind === "wall" && size[1] === 2.5);
+    const axes = [0, 1, 2] as const;
+
+    for (let leftIndex = 0; leftIndex < walls.length; leftIndex += 1) {
+      const left = walls[leftIndex]!;
+      for (const right of walls.slice(leftIndex + 1)) {
+        const overlap = axes.map((axis) => (
+          Math.min(left.center[axis] + left.size[axis] / 2, right.center[axis] + right.size[axis] / 2) -
+          Math.max(left.center[axis] - left.size[axis] / 2, right.center[axis] - right.size[axis] / 2)
+        ));
+        expect(overlap.every((component) => component > 0.000_001), `${left.id} intersects ${right.id}`).toBe(false);
+      }
+    }
+  });
+
+  it("builds each doorway from a clear-sized door and three non-overlapping frame pieces", () => {
+    const layout = generateDungeon({
+      seed: 9,
+      parameters: { ...DEFAULT_DUNGEON_PARAMETERS, doorOpenRate: [0, 0] },
+    });
+
+    for (const door of layout.doors) {
+      const leaf = layout.modules.find(({ id }) => id === `module-${door.id}`);
+      const frames = layout.modules.filter(({ id }) => id.startsWith(`module-${door.id}-frame-`));
+
+      expect(leaf?.size).toEqual([0.3, 2.1, layout.resolvedParameters!.corridorWidth - 0.6]);
+      expect(leaf?.center[1]).toBe(1.05);
+      expect(frames).toHaveLength(3);
+      expect(frames.filter(({ id }) => id.endsWith("lintel"))).toHaveLength(1);
+      expect(frames.filter(({ id }) => id.includes("jamb"))).toHaveLength(2);
+    }
+  });
 });

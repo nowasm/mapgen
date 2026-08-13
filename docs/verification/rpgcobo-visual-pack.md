@@ -14,10 +14,10 @@
 
 转换器验证 MagicaVoxel v200 文件边界、命名场景图、模型尺寸、体素和 RGBA 调色板。连续执行两次 `pnpm assets:build` 得到字节一致的 JSON。仓库保留上游 LICENSE、NOTICE、逐文件 SHA-256 和修改说明。
 
-渲染器按模块尺寸重复墙/地面表面图案，门使用源体素外轮廓；碰撞仍来自布局 JSON 的简化盒。几何签名复用将固定样本 GLB 从未复用版本约 15 MB 降到约 3.4 MB。
+渲染器按模块尺寸重复墙/地面表面图案，门使用源体素外轮廓；碰撞仍来自布局 JSON 的简化盒。几何签名复用将固定样本 GLB 从未复用版本约 15 MB 降到约 3.8 MB。
 
-Godot 4.6.2 已真实完成 GLB 导入、149 个原生碰撞创建、PackedScene 保存与重载，输出：
+Godot 4.6.2 已真实完成 GLB 导入、197 个原生碰撞创建、PackedScene 保存与重载，输出：
 
 ```text
-MAPGEN_GODOT_SMOKE_OK colliders=149 scene=user://mapgen-smoke-dungeon.tscn
+MAPGEN_GODOT_SMOKE_OK colliders=197 scene=user://mapgen-smoke-dungeon.tscn
 ```

@@ -52,7 +52,7 @@ describe("buildDungeonScene", () => {
 
     expect(result.counts.floors).toBe(layout.rooms.length + layout.corridors.length);
     expect(result.counts.walls).toBeGreaterThan(layout.rooms.length * 4);
-    expect(result.counts.doors).toBe(layout.doors.length * 2);
+    expect(result.counts.doors).toBe(layout.doors.length * 4);
   });
 
   it("uses traceable RPG-Cobo voxel-derived visual geometry", () => {
