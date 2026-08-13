@@ -105,7 +105,7 @@
     "handedness": "right"
   },
   "assetPack": {
-    "id": "rpgcobo-dungeon-stone",
+    "id": "dungeon-collection-2",
     "version": "1"
   },
   "rooms": [
@@ -6676,5 +6676,5 @@
       "attempts": 16
     }
   },
-  "glbSha256": "317fd0a592b109b3f7833cc547e305579b38620a21540dfe2a3b87988bce7f5b"
+  "glbSha256": "6ca596f948f2a1611f5f8f308ab8243a05b0e7a3d23510b5437d1d6c263c855e"
 }

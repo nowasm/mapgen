@@ -2,7 +2,7 @@
 
 面向 Godot 的房间—走廊式三维地下城生成器。网页端确定性生成、预览并导出配对的 GLB 与布局 JSON；Godot 4 插件将它们固定烘焙成带原生碰撞和出生点的可编辑 `.tscn` 场景。
 
-当前已实现单层、无屋顶的多房间地下城：Hub、Ring、Branch 与加权 Random 四种拓扑，完整的原版默认参数范围，门洞感知墙体、固定门状态及角色可行走碰撞。墙、石地板和门的外观来自 RPG-Cobo 默认 VOX 素材，经过离线、可追溯转换后随网页和 GLB 使用。
+当前已实现单层、无屋顶的多房间地下城：Hub、Ring、Branch 与加权 Random 四种拓扑，完整的原版默认参数范围，门洞感知墙体、固定门状态及角色可行走碰撞。墙、石地板、门框和木门使用仓库内 Dungeon Collection 2 的 OBJ/MTL 模块，经过离线、可追溯转换后随网页和 GLB 使用。
 
 ## 本地运行
 
@@ -49,13 +49,13 @@ pnpm generate:fixture
 
 固定样本 seed 104729 当前生成 11 个 Hub 房间和 197 个 Godot 原生碰撞体。详细证据见 [多房间端到端验证记录](docs/verification/multi-room-end-to-end.md)。
 
-`pnpm assets:build` 仅在需要从相邻的 `../rpgcobo-tool` 更新视觉包时执行；正常安装、生成、测试和导出使用仓库内已经转换好的 [视觉包](assets/rpgcobo/dungeon-visual-pack.json)。来源、哈希、修改说明及 Apache-2.0 归属见 [资源清单](assets/rpgcobo/SOURCE_MANIFEST.md)。
+`pnpm assets:build` 用于从 [Dungeon Collection 2 OBJ/MTL](assets/dungeon_collection_2) 重建静态 [视觉包](assets/dungeon_collection_2/dungeon-visual-pack.json)。使用模块、输入哈希和当前许可状态见 [资源清单](assets/dungeon_collection_2/SOURCE_MANIFEST.md)。
 
 ## 文档
 
 - [地下城地图生成器设计](docs/plans/2026-08-13-dungeon-map-generator-design.md)
 - [多房间实现计划](docs/plans/2026-08-13-multi-room-dungeon-implementation.md)
-- [RPG-Cobo 视觉包设计](docs/plans/2026-08-13-rpgcobo-dungeon-visual-pack-design.md)
+- [Dungeon Collection 2 视觉替换设计](docs/plans/2026-08-13-dungeon-collection-2-design.md)
 - [架构决策记录](docs/adr/README.md)
 
-原 RPG-Cobo 仓库仅作为行为与资源参考；资源迁移必须保留来源和许可信息。
+Dungeon Collection 2 目录当前未附许可证；补齐授权前，不应对外声明这些资源可再分发。

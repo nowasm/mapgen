@@ -55,19 +55,19 @@ describe("buildDungeonScene", () => {
     expect(result.counts.doors).toBe(layout.doors.length * 4);
   });
 
-  it("uses traceable RPG-Cobo voxel-derived visual geometry", () => {
+  it("uses traceable Dungeon Collection 2 modular geometry", () => {
     const layout = generateDungeon({ seed: 104729 });
     const { root } = buildDungeonScene(layout);
     const wall = root.getObjectByName("Walls")!.children.find((child) => child.userData.kind === "wall") as Mesh;
     const door = root.getObjectByName("Doors")!.children.find((child) => child.userData.kind === "door-closed") as Mesh;
 
     expect(root.userData).toEqual(expect.objectContaining({
-      visualPackId: "rpgcobo-dungeon-stone",
-      visualPackLicense: "Apache-2.0",
+      visualPackId: "dungeon-collection-2",
+      visualPackLicense: "UNSPECIFIED (user-provided)",
     }));
-    expect(wall.userData.sourceModel).toBe("brick1/mid");
+    expect(wall.userData.sourceModel).toBe("struct_wall_straight_main");
     expect(wall.geometry.getAttribute("color").count).toBeGreaterThan(24);
-    expect(door.userData.sourceModel).toBe("door1/close");
+    expect(door.userData.sourceModel).toBe("prop_wall_big_door_wood");
     expect(door.geometry.getAttribute("position").count).toBeGreaterThan(36);
   });
 });

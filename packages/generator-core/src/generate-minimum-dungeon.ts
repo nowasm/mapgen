@@ -205,7 +205,7 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
     parameters,
     grid: { width: parameters.width, height: parameters.height, cellSize: 1 },
     coordinateSystem: { up: "Y", forward: "-Z", handedness: "right" },
-    assetPack: { id: "placeholder-kit", version: "1" },
+    assetPack: { id: "dungeon-collection-2", version: "1" },
     rooms,
     connections: [{
       id: "connection-main",

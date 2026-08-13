@@ -12,7 +12,7 @@ func _init() -> void:
 	_assert(inspected.layout.schemaVersion == 1, "Unexpected schema version")
 	_assert(inspected.layout.rooms.size() >= 5, "Expected a multi-room dungeon")
 	_assert(inspected.layout.diagnostics.topology.mode == "hub", "Unexpected deterministic topology")
-	_assert(inspected.layout.assetPack.id == "rpgcobo-dungeon-stone", "Unexpected visual asset pack")
+	_assert(inspected.layout.assetPack.id == "dungeon-collection-2", "Unexpected visual asset pack")
 
 	var built: Dictionary = baker.build_scene(DEFAULT_LAYOUT)
 	_assert(built.ok, "Scene build failed: %s" % built.get("error", "unknown"))

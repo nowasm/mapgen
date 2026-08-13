@@ -1,6 +1,5 @@
 import type { DungeonLayout, ModuleDefinition, ModuleKind } from "@mapgen/layout-schema";
 import {
-  BoxGeometry,
   type BufferGeometry,
   Color,
   Group,
@@ -9,8 +8,8 @@ import {
   type Material,
 } from "three";
 
-import { rpgCoboVisualPack } from "./rpgcobo-visual-pack";
-import { createDoorVoxelGeometry, createPatternedBoxGeometry } from "./voxel-geometry";
+import { dungeonCollection2Pack } from "./dungeon-collection-2-pack";
+import { createFittedGeometry, createTiledFloorGeometry, createTiledWallGeometry } from "./modular-geometry";
 
 export interface DungeonSceneResult {
   readonly root: Group;
@@ -20,7 +19,7 @@ export interface DungeonSceneResult {
 const materialByKind: Record<ModuleKind, Material> = {
   floor: new MeshStandardMaterial({ color: new Color("#ffffff"), vertexColors: true, roughness: 0.93, metalness: 0.02 }),
   wall: new MeshStandardMaterial({ color: new Color("#ffffff"), vertexColors: true, roughness: 0.88, metalness: 0.01 }),
-  "door-frame": new MeshStandardMaterial({ color: new Color("#302c27"), roughness: 0.7, metalness: 0.18 }),
+  "door-frame": new MeshStandardMaterial({ color: new Color("#ffffff"), vertexColors: true, roughness: 0.82, metalness: 0.03 }),
   "door-open": new MeshStandardMaterial({ color: new Color("#ffffff"), vertexColors: true, roughness: 0.72, metalness: 0.05 }),
   "door-closed": new MeshStandardMaterial({ color: new Color("#ffffff"), vertexColors: true, roughness: 0.76, metalness: 0.08 }),
 };
@@ -32,14 +31,14 @@ function moduleGeometry(module: ModuleDefinition): BufferGeometry {
   const cached = geometryBySignature.get(signature);
   if (cached) return cached;
   const geometry = module.kind === "floor"
-    ? createPatternedBoxGeometry(module.size, rpgCoboVisualPack.modules.floor, "floor")
+    ? createTiledFloorGeometry(module.size, dungeonCollection2Pack.modules.floor)
     : module.kind === "wall"
-      ? createPatternedBoxGeometry(module.size, rpgCoboVisualPack.modules.wall, "wall")
+      ? createTiledWallGeometry(module.size, dungeonCollection2Pack.modules.wall)
       : module.kind === "door-open"
-        ? createDoorVoxelGeometry(module.size, rpgCoboVisualPack.modules.doorOpen)
+        ? createFittedGeometry(module.size, dungeonCollection2Pack.modules.doorOpen, true)
         : module.kind === "door-closed"
-          ? createDoorVoxelGeometry(module.size, rpgCoboVisualPack.modules.doorClosed)
-          : new BoxGeometry(...module.size);
+          ? createFittedGeometry(module.size, dungeonCollection2Pack.modules.doorClosed, true)
+          : createFittedGeometry(module.size, dungeonCollection2Pack.modules.frame);
   geometryBySignature.set(signature, geometry);
   return geometry;
 }
@@ -56,11 +55,12 @@ function createModuleMesh(module: ModuleDefinition): Mesh {
   mesh.userData = {
     kind: module.kind,
     moduleId: module.id,
-    visualPackId: rpgCoboVisualPack.id,
-    sourceModel: module.kind === "floor" ? rpgCoboVisualPack.modules.floor.sourceModel
-      : module.kind === "wall" ? rpgCoboVisualPack.modules.wall.sourceModel
-        : module.kind === "door-open" ? rpgCoboVisualPack.modules.doorOpen.sourceModel
-          : module.kind === "door-closed" ? rpgCoboVisualPack.modules.doorClosed.sourceModel : undefined,
+    visualPackId: dungeonCollection2Pack.id,
+    sourceModel: module.kind === "floor" ? dungeonCollection2Pack.modules.floor.sourceModel
+      : module.kind === "wall" ? dungeonCollection2Pack.modules.wall.sourceModel
+        : module.kind === "door-open" ? dungeonCollection2Pack.modules.doorOpen.sourceModel
+          : module.kind === "door-closed" ? dungeonCollection2Pack.modules.doorClosed.sourceModel
+            : dungeonCollection2Pack.modules.frame.sourceModel,
   };
   return mesh;
 }
@@ -74,9 +74,9 @@ export function buildDungeonScene(layout: DungeonLayout): DungeonSceneResult {
     generatorVersion: layout.generatorVersion,
     seed: layout.seed,
     assetPackId: layout.assetPack.id,
-    visualPackId: rpgCoboVisualPack.id,
-    visualPackVersion: rpgCoboVisualPack.version,
-    visualPackLicense: rpgCoboVisualPack.license,
+    visualPackId: dungeonCollection2Pack.id,
+    visualPackVersion: dungeonCollection2Pack.version,
+    visualPackLicense: dungeonCollection2Pack.license,
   };
 
   const floors = new Group();
