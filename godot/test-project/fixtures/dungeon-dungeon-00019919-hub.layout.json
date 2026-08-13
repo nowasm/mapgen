@@ -1,0 +1,5242 @@
+{
+  "schemaVersion": 1,
+  "generatorVersion": "0.2.0-multi-room",
+  "exportId": "dungeon-00019919-hub",
+  "seed": 104729,
+  "parameters": {
+    "width": 160,
+    "height": 160,
+    "mode": "random",
+    "layoutWeights": {
+      "hub": 0.33,
+      "ring": 0.34,
+      "branch": 0.33
+    },
+    "largeCellSize": [
+      22,
+      38
+    ],
+    "roomRate": [
+      0.25,
+      0.5
+    ],
+    "roomSize": [
+      0.8,
+      1.2
+    ],
+    "roomMinSize": [
+      10,
+      14
+    ],
+    "roomMaxSize": [
+      28,
+      36
+    ],
+    "roomCountMin": [
+      5,
+      7
+    ],
+    "roomCountMax": [
+      20,
+      28
+    ],
+    "corridorWidth": [
+      4,
+      4
+    ],
+    "loopRate": [
+      0.2,
+      0.4
+    ],
+    "deadEndRate": [
+      0.15,
+      0.25
+    ],
+    "branchTryMultiplier": [
+      8,
+      12
+    ],
+    "branchFromProtectedChance": [
+      0.1,
+      0.3
+    ],
+    "linearWingChance": [
+      0.28,
+      0.38
+    ],
+    "mirrorXChance": [
+      0.4,
+      0.6
+    ],
+    "doorOpenRate": [
+      0.2,
+      0.8
+    ]
+  },
+  "resolvedParameters": {
+    "width": 160,
+    "height": 160,
+    "topology": "hub",
+    "largeCellSize": 30,
+    "roomRate": 0.452620989351999,
+    "roomSize": 1.1987415766343474,
+    "roomMinSize": 10,
+    "roomMaxSize": 33,
+    "roomCountMin": 5,
+    "roomCountMax": 25,
+    "roomCount": 11,
+    "corridorWidth": 4,
+    "loopRate": 0.3279279165901244,
+    "deadEndRate": 0.20073642928618937,
+    "branchTryMultiplier": 8,
+    "branchFromProtectedChance": 0.10437803133390844,
+    "linearWingChance": 0.2920292210951448,
+    "mirrorXChance": 0.4420002777595073,
+    "doorOpenRate": 0.4577616380527616
+  },
+  "grid": {
+    "width": 160,
+    "height": 160,
+    "cellSize": 1
+  },
+  "coordinateSystem": {
+    "up": "Y",
+    "forward": "-Z",
+    "handedness": "right"
+  },
+  "assetPack": {
+    "id": "placeholder-kit",
+    "version": "1"
+  },
+  "rooms": [
+    {
+      "id": "room-0",
+      "x": 72,
+      "z": 51,
+      "width": 16,
+      "depth": 28,
+      "kind": "entrance"
+    },
+    {
+      "id": "room-1",
+      "x": 39,
+      "z": 55,
+      "width": 22,
+      "depth": 20,
+      "kind": "normal"
+    },
+    {
+      "id": "room-2",
+      "x": 66,
+      "z": 86,
+      "width": 28,
+      "depth": 18,
+      "kind": "normal"
+    },
+    {
+      "id": "room-3",
+      "x": 105,
+      "z": 54,
+      "width": 10,
+      "depth": 22,
+      "kind": "normal"
+    },
+    {
+      "id": "room-4",
+      "x": 71,
+      "z": 27,
+      "width": 18,
+      "depth": 16,
+      "kind": "normal"
+    },
+    {
+      "id": "room-5",
+      "x": 9,
+      "z": 55,
+      "width": 22,
+      "depth": 20,
+      "kind": "exit"
+    },
+    {
+      "id": "room-6",
+      "x": 37,
+      "z": 86,
+      "width": 26,
+      "depth": 18,
+      "kind": "normal"
+    },
+    {
+      "id": "room-7",
+      "x": 37,
+      "z": 29,
+      "width": 26,
+      "depth": 12,
+      "kind": "normal"
+    },
+    {
+      "id": "room-8",
+      "x": 68,
+      "z": 114,
+      "width": 24,
+      "depth": 22,
+      "kind": "normal"
+    },
+    {
+      "id": "room-9",
+      "x": 104,
+      "z": 84,
+      "width": 12,
+      "depth": 22,
+      "kind": "normal"
+    },
+    {
+      "id": "room-10",
+      "x": 128,
+      "z": 55,
+      "width": 24,
+      "depth": 20,
+      "kind": "normal"
+    }
+  ],
+  "connections": [
+    {
+      "id": "connection-0",
+      "fromRoomId": "room-0",
+      "toRoomId": "room-1",
+      "corridorId": "corridor-0",
+      "doorIds": [
+        "door-0-a",
+        "door-0-b"
+      ]
+    },
+    {
+      "id": "connection-1",
+      "fromRoomId": "room-0",
+      "toRoomId": "room-2",
+      "corridorId": "corridor-1",
+      "doorIds": [
+        "door-1-a",
+        "door-1-b"
+      ]
+    },
+    {
+      "id": "connection-2",
+      "fromRoomId": "room-0",
+      "toRoomId": "room-3",
+      "corridorId": "corridor-2",
+      "doorIds": [
+        "door-2-a",
+        "door-2-b"
+      ]
+    },
+    {
+      "id": "connection-3",
+      "fromRoomId": "room-0",
+      "toRoomId": "room-4",
+      "corridorId": "corridor-3",
+      "doorIds": [
+        "door-3-a",
+        "door-3-b"
+      ]
+    },
+    {
+      "id": "connection-4",
+      "fromRoomId": "room-1",
+      "toRoomId": "room-5",
+      "corridorId": "corridor-4",
+      "doorIds": [
+        "door-4-a",
+        "door-4-b"
+      ]
+    },
+    {
+      "id": "connection-5",
+      "fromRoomId": "room-1",
+      "toRoomId": "room-6",
+      "corridorId": "corridor-5",
+      "doorIds": [
+        "door-5-a",
+        "door-5-b"
+      ]
+    },
+    {
+      "id": "connection-6",
+      "fromRoomId": "room-1",
+      "toRoomId": "room-7",
+      "corridorId": "corridor-6",
+      "doorIds": [
+        "door-6-a",
+        "door-6-b"
+      ]
+    },
+    {
+      "id": "connection-7",
+      "fromRoomId": "room-2",
+      "toRoomId": "room-8",
+      "corridorId": "corridor-7",
+      "doorIds": [
+        "door-7-a",
+        "door-7-b"
+      ]
+    },
+    {
+      "id": "connection-8",
+      "fromRoomId": "room-2",
+      "toRoomId": "room-9",
+      "corridorId": "corridor-8",
+      "doorIds": [
+        "door-8-a",
+        "door-8-b"
+      ]
+    },
+    {
+      "id": "connection-9",
+      "fromRoomId": "room-3",
+      "toRoomId": "room-10",
+      "corridorId": "corridor-9",
+      "doorIds": [
+        "door-9-a",
+        "door-9-b"
+      ]
+    },
+    {
+      "id": "connection-10",
+      "fromRoomId": "room-3",
+      "toRoomId": "room-9",
+      "corridorId": "corridor-10",
+      "doorIds": [
+        "door-10-a",
+        "door-10-b"
+      ]
+    },
+    {
+      "id": "connection-11",
+      "fromRoomId": "room-4",
+      "toRoomId": "room-7",
+      "corridorId": "corridor-11",
+      "doorIds": [
+        "door-11-a",
+        "door-11-b"
+      ]
+    }
+  ],
+  "corridors": [
+    {
+      "id": "corridor-0",
+      "x": 61,
+      "z": 63,
+      "width": 11,
+      "depth": 4
+    },
+    {
+      "id": "corridor-1",
+      "x": 78,
+      "z": 79,
+      "width": 4,
+      "depth": 7
+    },
+    {
+      "id": "corridor-2",
+      "x": 88,
+      "z": 63,
+      "width": 17,
+      "depth": 4
+    },
+    {
+      "id": "corridor-3",
+      "x": 78,
+      "z": 43,
+      "width": 4,
+      "depth": 8
+    },
+    {
+      "id": "corridor-4",
+      "x": 31,
+      "z": 63,
+      "width": 8,
+      "depth": 4
+    },
+    {
+      "id": "corridor-5",
+      "x": 48,
+      "z": 75,
+      "width": 4,
+      "depth": 11
+    },
+    {
+      "id": "corridor-6",
+      "x": 48,
+      "z": 41,
+      "width": 4,
+      "depth": 14
+    },
+    {
+      "id": "corridor-7",
+      "x": 78,
+      "z": 104,
+      "width": 4,
+      "depth": 10
+    },
+    {
+      "id": "corridor-8",
+      "x": 94,
+      "z": 93,
+      "width": 10,
+      "depth": 4
+    },
+    {
+      "id": "corridor-9",
+      "x": 115,
+      "z": 63,
+      "width": 13,
+      "depth": 4
+    },
+    {
+      "id": "corridor-10",
+      "x": 108,
+      "z": 76,
+      "width": 4,
+      "depth": 8
+    },
+    {
+      "id": "corridor-11",
+      "x": 63,
+      "z": 33,
+      "width": 8,
+      "depth": 4
+    }
+  ],
+  "doors": [
+    {
+      "id": "door-0-a",
+      "position": [
+        -19,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-0-b",
+      "position": [
+        -8,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-1-a",
+      "position": [
+        0,
+        1.25,
+        -1
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": true
+    },
+    {
+      "id": "door-1-b",
+      "position": [
+        0,
+        1.25,
+        6
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-2-a",
+      "position": [
+        8,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": false
+    },
+    {
+      "id": "door-2-b",
+      "position": [
+        25,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-3-a",
+      "position": [
+        0,
+        1.25,
+        -37
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-3-b",
+      "position": [
+        0,
+        1.25,
+        -29
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-4-a",
+      "position": [
+        -49,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-4-b",
+      "position": [
+        -41,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-5-a",
+      "position": [
+        -30,
+        1.25,
+        -5
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-5-b",
+      "position": [
+        -30,
+        1.25,
+        6
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": true
+    },
+    {
+      "id": "door-6-a",
+      "position": [
+        -30,
+        1.25,
+        -39
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": true
+    },
+    {
+      "id": "door-6-b",
+      "position": [
+        -30,
+        1.25,
+        -25
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-7-a",
+      "position": [
+        0,
+        1.25,
+        24
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": true
+    },
+    {
+      "id": "door-7-b",
+      "position": [
+        0,
+        1.25,
+        34
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": true
+    },
+    {
+      "id": "door-8-a",
+      "position": [
+        14,
+        1.25,
+        15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-8-b",
+      "position": [
+        24,
+        1.25,
+        15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-9-a",
+      "position": [
+        35,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": false
+    },
+    {
+      "id": "door-9-b",
+      "position": [
+        48,
+        1.25,
+        -15
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-10-a",
+      "position": [
+        30,
+        1.25,
+        -4
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-10-b",
+      "position": [
+        30,
+        1.25,
+        4
+      ],
+      "rotationY": 1.5707963267948966,
+      "open": false
+    },
+    {
+      "id": "door-11-a",
+      "position": [
+        -17,
+        1.25,
+        -45
+      ],
+      "rotationY": 0,
+      "open": true
+    },
+    {
+      "id": "door-11-b",
+      "position": [
+        -9,
+        1.25,
+        -45
+      ],
+      "rotationY": 0,
+      "open": false
+    }
+  ],
+  "spawn": {
+    "position": [
+      0,
+      0.1,
+      -15
+    ],
+    "rotationY": 0
+  },
+  "modules": [
+    {
+      "id": "module-room-0-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -15
+      ],
+      "size": [
+        16,
+        0.2,
+        28
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -5,
+        1.25,
+        -29
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-north-wall-1",
+      "kind": "wall",
+      "center": [
+        5,
+        1.25,
+        -29
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -5,
+        1.25,
+        -1
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-south-wall-1",
+      "kind": "wall",
+      "center": [
+        5,
+        1.25,
+        -1
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        -23
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        -7
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-east-wall-0",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        -23
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-0-east-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        -7
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -15
+      ],
+      "size": [
+        22,
+        0.2,
+        20
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -36.5,
+        1.25,
+        -25
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-north-wall-1",
+      "kind": "wall",
+      "center": [
+        -23.5,
+        1.25,
+        -25
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -36.5,
+        1.25,
+        -5
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-south-wall-1",
+      "kind": "wall",
+      "center": [
+        -23.5,
+        1.25,
+        -5
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -41,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -41,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -19,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-1-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -19,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        15
+      ],
+      "size": [
+        28,
+        0.2,
+        18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        6
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-north-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        6
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        24
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-south-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        24
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -14,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-east-wall-0",
+      "kind": "wall",
+      "center": [
+        14,
+        1.25,
+        9.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-2-east-wall-1",
+      "kind": "wall",
+      "center": [
+        14,
+        1.25,
+        20.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        -15
+      ],
+      "size": [
+        10,
+        0.2,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-north-wall-0",
+      "kind": "wall",
+      "center": [
+        30,
+        1.25,
+        -26
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-south-wall-0",
+      "kind": "wall",
+      "center": [
+        26.5,
+        1.25,
+        -4
+      ],
+      "size": [
+        3,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-south-wall-1",
+      "kind": "wall",
+      "center": [
+        33.5,
+        1.25,
+        -4
+      ],
+      "size": [
+        3,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-west-wall-0",
+      "kind": "wall",
+      "center": [
+        25,
+        1.25,
+        -21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-west-wall-1",
+      "kind": "wall",
+      "center": [
+        25,
+        1.25,
+        -8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-east-wall-0",
+      "kind": "wall",
+      "center": [
+        35,
+        1.25,
+        -21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-3-east-wall-1",
+      "kind": "wall",
+      "center": [
+        35,
+        1.25,
+        -8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -45
+      ],
+      "size": [
+        18,
+        0.2,
+        16
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-north-wall-0",
+      "kind": "wall",
+      "center": [
+        0,
+        1.25,
+        -53
+      ],
+      "size": [
+        18,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -5.5,
+        1.25,
+        -37
+      ],
+      "size": [
+        7,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-south-wall-1",
+      "kind": "wall",
+      "center": [
+        5.5,
+        1.25,
+        -37
+      ],
+      "size": [
+        7,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -9,
+        1.25,
+        -50
+      ],
+      "size": [
+        0.3,
+        2.5,
+        6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -9,
+        1.25,
+        -40
+      ],
+      "size": [
+        0.3,
+        2.5,
+        6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-4-east-wall-0",
+      "kind": "wall",
+      "center": [
+        9,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        16
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-floor",
+      "kind": "floor",
+      "center": [
+        -60,
+        -0.1,
+        -15
+      ],
+      "size": [
+        22,
+        0.2,
+        20
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -60,
+        1.25,
+        -25
+      ],
+      "size": [
+        22,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -60,
+        1.25,
+        -5
+      ],
+      "size": [
+        22,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -71,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        20
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -49,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-5-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -49,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        15
+      ],
+      "size": [
+        26,
+        0.2,
+        18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -37.5,
+        1.25,
+        6
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-north-wall-1",
+      "kind": "wall",
+      "center": [
+        -22.5,
+        1.25,
+        6
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -30,
+        1.25,
+        24
+      ],
+      "size": [
+        26,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -43,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-6-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -45
+      ],
+      "size": [
+        26,
+        0.2,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -30,
+        1.25,
+        -51
+      ],
+      "size": [
+        26,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -37.5,
+        1.25,
+        -39
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-south-wall-1",
+      "kind": "wall",
+      "center": [
+        -22.5,
+        1.25,
+        -39
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -43,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        -49
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-7-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        -41
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        45
+      ],
+      "size": [
+        24,
+        0.2,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -7,
+        1.25,
+        34
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-north-wall-1",
+      "kind": "wall",
+      "center": [
+        7,
+        1.25,
+        34
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-south-wall-0",
+      "kind": "wall",
+      "center": [
+        0,
+        1.25,
+        56
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -12,
+        1.25,
+        45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-8-east-wall-0",
+      "kind": "wall",
+      "center": [
+        12,
+        1.25,
+        45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        15
+      ],
+      "size": [
+        12,
+        0.2,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-north-wall-0",
+      "kind": "wall",
+      "center": [
+        26,
+        1.25,
+        4
+      ],
+      "size": [
+        4,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-north-wall-1",
+      "kind": "wall",
+      "center": [
+        34,
+        1.25,
+        4
+      ],
+      "size": [
+        4,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-south-wall-0",
+      "kind": "wall",
+      "center": [
+        30,
+        1.25,
+        26
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-west-wall-0",
+      "kind": "wall",
+      "center": [
+        24,
+        1.25,
+        8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-west-wall-1",
+      "kind": "wall",
+      "center": [
+        24,
+        1.25,
+        21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-9-east-wall-0",
+      "kind": "wall",
+      "center": [
+        36,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-floor",
+      "kind": "floor",
+      "center": [
+        60,
+        -0.1,
+        -15
+      ],
+      "size": [
+        24,
+        0.2,
+        20
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-north-wall-0",
+      "kind": "wall",
+      "center": [
+        60,
+        1.25,
+        -25
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-south-wall-0",
+      "kind": "wall",
+      "center": [
+        60,
+        1.25,
+        -5
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-west-wall-0",
+      "kind": "wall",
+      "center": [
+        48,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-west-wall-1",
+      "kind": "wall",
+      "center": [
+        48,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-room-10-east-wall-0",
+      "kind": "wall",
+      "center": [
+        72,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        20
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-0-floor",
+      "kind": "floor",
+      "center": [
+        -13.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        11,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-0-wall-a",
+      "kind": "wall",
+      "center": [
+        -13.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-0-wall-b",
+      "kind": "wall",
+      "center": [
+        -13.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-1-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        2.5
+      ],
+      "size": [
+        4,
+        0.2,
+        7
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-1-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        2.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-1-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        2.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-2-floor",
+      "kind": "floor",
+      "center": [
+        16.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        17,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-2-wall-a",
+      "kind": "wall",
+      "center": [
+        16.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        17,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-2-wall-b",
+      "kind": "wall",
+      "center": [
+        16.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        17,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-3-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -33
+      ],
+      "size": [
+        4,
+        0.2,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-3-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        -33
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-3-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        -33
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-4-floor",
+      "kind": "floor",
+      "center": [
+        -45,
+        -0.1,
+        -15
+      ],
+      "size": [
+        8,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-4-wall-a",
+      "kind": "wall",
+      "center": [
+        -45,
+        1.25,
+        -17
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-4-wall-b",
+      "kind": "wall",
+      "center": [
+        -45,
+        1.25,
+        -13
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-5-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        0.5
+      ],
+      "size": [
+        4,
+        0.2,
+        11
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-5-wall-a",
+      "kind": "wall",
+      "center": [
+        -32,
+        1.25,
+        0.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        11
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-5-wall-b",
+      "kind": "wall",
+      "center": [
+        -28,
+        1.25,
+        0.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        11
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-6-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -32
+      ],
+      "size": [
+        4,
+        0.2,
+        14
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-6-wall-a",
+      "kind": "wall",
+      "center": [
+        -32,
+        1.25,
+        -32
+      ],
+      "size": [
+        0.3,
+        2.5,
+        14
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-6-wall-b",
+      "kind": "wall",
+      "center": [
+        -28,
+        1.25,
+        -32
+      ],
+      "size": [
+        0.3,
+        2.5,
+        14
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-7-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        29
+      ],
+      "size": [
+        4,
+        0.2,
+        10
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-7-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        10
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-7-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        10
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-8-floor",
+      "kind": "floor",
+      "center": [
+        19,
+        -0.1,
+        15
+      ],
+      "size": [
+        10,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-8-wall-a",
+      "kind": "wall",
+      "center": [
+        19,
+        1.25,
+        13
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-8-wall-b",
+      "kind": "wall",
+      "center": [
+        19,
+        1.25,
+        17
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-9-floor",
+      "kind": "floor",
+      "center": [
+        41.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        13,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-9-wall-a",
+      "kind": "wall",
+      "center": [
+        41.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        13,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-9-wall-b",
+      "kind": "wall",
+      "center": [
+        41.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        13,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-10-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        0
+      ],
+      "size": [
+        4,
+        0.2,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-10-wall-a",
+      "kind": "wall",
+      "center": [
+        28,
+        1.25,
+        0
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-10-wall-b",
+      "kind": "wall",
+      "center": [
+        32,
+        1.25,
+        0
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-11-floor",
+      "kind": "floor",
+      "center": [
+        -13,
+        -0.1,
+        -45
+      ],
+      "size": [
+        8,
+        0.2,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-11-wall-a",
+      "kind": "wall",
+      "center": [
+        -13,
+        1.25,
+        -47
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-corridor-11-wall-b",
+      "kind": "wall",
+      "center": [
+        -13,
+        1.25,
+        -43
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-0-a",
+      "kind": "door-open",
+      "center": [
+        -19,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-0-a-frame",
+      "kind": "door-frame",
+      "center": [
+        -19,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-0-b",
+      "kind": "door-open",
+      "center": [
+        -8,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-0-b-frame",
+      "kind": "door-frame",
+      "center": [
+        -8,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-1-a",
+      "kind": "door-open",
+      "center": [
+        0,
+        1.25,
+        -1
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "module-door-1-a-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        -1
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-1-b",
+      "kind": "door-closed",
+      "center": [
+        0,
+        1.25,
+        6
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-1-b-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        6
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-2-a",
+      "kind": "door-closed",
+      "center": [
+        8,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-2-a-frame",
+      "kind": "door-frame",
+      "center": [
+        8,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-2-b",
+      "kind": "door-open",
+      "center": [
+        25,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-2-b-frame",
+      "kind": "door-frame",
+      "center": [
+        25,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-3-a",
+      "kind": "door-closed",
+      "center": [
+        0,
+        1.25,
+        -37
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-3-a-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        -37
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-3-b",
+      "kind": "door-closed",
+      "center": [
+        0,
+        1.25,
+        -29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-3-b-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        -29
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-4-a",
+      "kind": "door-open",
+      "center": [
+        -49,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-4-a-frame",
+      "kind": "door-frame",
+      "center": [
+        -49,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-4-b",
+      "kind": "door-open",
+      "center": [
+        -41,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-4-b-frame",
+      "kind": "door-frame",
+      "center": [
+        -41,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-5-a",
+      "kind": "door-closed",
+      "center": [
+        -30,
+        1.25,
+        -5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-5-a-frame",
+      "kind": "door-frame",
+      "center": [
+        -30,
+        2.3,
+        -5
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-5-b",
+      "kind": "door-open",
+      "center": [
+        -30,
+        1.25,
+        6
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "module-door-5-b-frame",
+      "kind": "door-frame",
+      "center": [
+        -30,
+        2.3,
+        6
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-6-a",
+      "kind": "door-open",
+      "center": [
+        -30,
+        1.25,
+        -39
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "module-door-6-a-frame",
+      "kind": "door-frame",
+      "center": [
+        -30,
+        2.3,
+        -39
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-6-b",
+      "kind": "door-closed",
+      "center": [
+        -30,
+        1.25,
+        -25
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-6-b-frame",
+      "kind": "door-frame",
+      "center": [
+        -30,
+        2.3,
+        -25
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-7-a",
+      "kind": "door-open",
+      "center": [
+        0,
+        1.25,
+        24
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "module-door-7-a-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        24
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-7-b",
+      "kind": "door-open",
+      "center": [
+        0,
+        1.25,
+        34
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 3.141592653589793
+    },
+    {
+      "id": "module-door-7-b-frame",
+      "kind": "door-frame",
+      "center": [
+        0,
+        2.3,
+        34
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-8-a",
+      "kind": "door-open",
+      "center": [
+        14,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-8-a-frame",
+      "kind": "door-frame",
+      "center": [
+        14,
+        2.3,
+        15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-8-b",
+      "kind": "door-open",
+      "center": [
+        24,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-8-b-frame",
+      "kind": "door-frame",
+      "center": [
+        24,
+        2.3,
+        15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-9-a",
+      "kind": "door-closed",
+      "center": [
+        35,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-9-a-frame",
+      "kind": "door-frame",
+      "center": [
+        35,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-9-b",
+      "kind": "door-open",
+      "center": [
+        48,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-9-b-frame",
+      "kind": "door-frame",
+      "center": [
+        48,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-10-a",
+      "kind": "door-closed",
+      "center": [
+        30,
+        1.25,
+        -4
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-10-a-frame",
+      "kind": "door-frame",
+      "center": [
+        30,
+        2.3,
+        -4
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-10-b",
+      "kind": "door-closed",
+      "center": [
+        30,
+        1.25,
+        4
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-10-b-frame",
+      "kind": "door-frame",
+      "center": [
+        30,
+        2.3,
+        4
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-11-a",
+      "kind": "door-open",
+      "center": [
+        -17,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "module-door-11-a-frame",
+      "kind": "door-frame",
+      "center": [
+        -17,
+        2.3,
+        -45
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-11-b",
+      "kind": "door-closed",
+      "center": [
+        -9,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "module-door-11-b-frame",
+      "kind": "door-frame",
+      "center": [
+        -9,
+        2.3,
+        -45
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    }
+  ],
+  "colliders": [
+    {
+      "id": "collider-room-0-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -15
+      ],
+      "size": [
+        16,
+        0.2,
+        28
+      ]
+    },
+    {
+      "id": "collider-room-0-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -5,
+        1.25,
+        -29
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-0-north-wall-1",
+      "kind": "wall",
+      "center": [
+        5,
+        1.25,
+        -29
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-0-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -5,
+        1.25,
+        -1
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-0-south-wall-1",
+      "kind": "wall",
+      "center": [
+        5,
+        1.25,
+        -1
+      ],
+      "size": [
+        6,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-0-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        -23
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-0-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        -7
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-0-east-wall-0",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        -23
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-0-east-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        -7
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-1-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -15
+      ],
+      "size": [
+        22,
+        0.2,
+        20
+      ]
+    },
+    {
+      "id": "collider-room-1-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -36.5,
+        1.25,
+        -25
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-1-north-wall-1",
+      "kind": "wall",
+      "center": [
+        -23.5,
+        1.25,
+        -25
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-1-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -36.5,
+        1.25,
+        -5
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-1-south-wall-1",
+      "kind": "wall",
+      "center": [
+        -23.5,
+        1.25,
+        -5
+      ],
+      "size": [
+        9,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-1-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -41,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-1-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -41,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-1-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -19,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-1-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -19,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-2-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        15
+      ],
+      "size": [
+        28,
+        0.2,
+        18
+      ]
+    },
+    {
+      "id": "collider-room-2-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        6
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-2-north-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        6
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-2-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -8,
+        1.25,
+        24
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-2-south-wall-1",
+      "kind": "wall",
+      "center": [
+        8,
+        1.25,
+        24
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-2-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -14,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ]
+    },
+    {
+      "id": "collider-room-2-east-wall-0",
+      "kind": "wall",
+      "center": [
+        14,
+        1.25,
+        9.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ]
+    },
+    {
+      "id": "collider-room-2-east-wall-1",
+      "kind": "wall",
+      "center": [
+        14,
+        1.25,
+        20.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ]
+    },
+    {
+      "id": "collider-room-3-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        -15
+      ],
+      "size": [
+        10,
+        0.2,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-3-north-wall-0",
+      "kind": "wall",
+      "center": [
+        30,
+        1.25,
+        -26
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-3-south-wall-0",
+      "kind": "wall",
+      "center": [
+        26.5,
+        1.25,
+        -4
+      ],
+      "size": [
+        3,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-3-south-wall-1",
+      "kind": "wall",
+      "center": [
+        33.5,
+        1.25,
+        -4
+      ],
+      "size": [
+        3,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-3-west-wall-0",
+      "kind": "wall",
+      "center": [
+        25,
+        1.25,
+        -21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-3-west-wall-1",
+      "kind": "wall",
+      "center": [
+        25,
+        1.25,
+        -8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-3-east-wall-0",
+      "kind": "wall",
+      "center": [
+        35,
+        1.25,
+        -21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-3-east-wall-1",
+      "kind": "wall",
+      "center": [
+        35,
+        1.25,
+        -8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-4-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -45
+      ],
+      "size": [
+        18,
+        0.2,
+        16
+      ]
+    },
+    {
+      "id": "collider-room-4-north-wall-0",
+      "kind": "wall",
+      "center": [
+        0,
+        1.25,
+        -53
+      ],
+      "size": [
+        18,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-4-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -5.5,
+        1.25,
+        -37
+      ],
+      "size": [
+        7,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-4-south-wall-1",
+      "kind": "wall",
+      "center": [
+        5.5,
+        1.25,
+        -37
+      ],
+      "size": [
+        7,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-4-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -9,
+        1.25,
+        -50
+      ],
+      "size": [
+        0.3,
+        2.5,
+        6
+      ]
+    },
+    {
+      "id": "collider-room-4-west-wall-1",
+      "kind": "wall",
+      "center": [
+        -9,
+        1.25,
+        -40
+      ],
+      "size": [
+        0.3,
+        2.5,
+        6
+      ]
+    },
+    {
+      "id": "collider-room-4-east-wall-0",
+      "kind": "wall",
+      "center": [
+        9,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        16
+      ]
+    },
+    {
+      "id": "collider-room-5-floor",
+      "kind": "floor",
+      "center": [
+        -60,
+        -0.1,
+        -15
+      ],
+      "size": [
+        22,
+        0.2,
+        20
+      ]
+    },
+    {
+      "id": "collider-room-5-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -60,
+        1.25,
+        -25
+      ],
+      "size": [
+        22,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-5-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -60,
+        1.25,
+        -5
+      ],
+      "size": [
+        22,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-5-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -71,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        20
+      ]
+    },
+    {
+      "id": "collider-room-5-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -49,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-5-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -49,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-6-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        15
+      ],
+      "size": [
+        26,
+        0.2,
+        18
+      ]
+    },
+    {
+      "id": "collider-room-6-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -37.5,
+        1.25,
+        6
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-6-north-wall-1",
+      "kind": "wall",
+      "center": [
+        -22.5,
+        1.25,
+        6
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-6-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -30,
+        1.25,
+        24
+      ],
+      "size": [
+        26,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-6-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -43,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ]
+    },
+    {
+      "id": "collider-room-6-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        18
+      ]
+    },
+    {
+      "id": "collider-room-7-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -45
+      ],
+      "size": [
+        26,
+        0.2,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-7-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -30,
+        1.25,
+        -51
+      ],
+      "size": [
+        26,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-7-south-wall-0",
+      "kind": "wall",
+      "center": [
+        -37.5,
+        1.25,
+        -39
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-7-south-wall-1",
+      "kind": "wall",
+      "center": [
+        -22.5,
+        1.25,
+        -39
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-7-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -43,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        12
+      ]
+    },
+    {
+      "id": "collider-room-7-east-wall-0",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        -49
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ]
+    },
+    {
+      "id": "collider-room-7-east-wall-1",
+      "kind": "wall",
+      "center": [
+        -17,
+        1.25,
+        -41
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ]
+    },
+    {
+      "id": "collider-room-8-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        45
+      ],
+      "size": [
+        24,
+        0.2,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-8-north-wall-0",
+      "kind": "wall",
+      "center": [
+        -7,
+        1.25,
+        34
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-8-north-wall-1",
+      "kind": "wall",
+      "center": [
+        7,
+        1.25,
+        34
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-8-south-wall-0",
+      "kind": "wall",
+      "center": [
+        0,
+        1.25,
+        56
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-8-west-wall-0",
+      "kind": "wall",
+      "center": [
+        -12,
+        1.25,
+        45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-8-east-wall-0",
+      "kind": "wall",
+      "center": [
+        12,
+        1.25,
+        45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-9-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        15
+      ],
+      "size": [
+        12,
+        0.2,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-9-north-wall-0",
+      "kind": "wall",
+      "center": [
+        26,
+        1.25,
+        4
+      ],
+      "size": [
+        4,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-9-north-wall-1",
+      "kind": "wall",
+      "center": [
+        34,
+        1.25,
+        4
+      ],
+      "size": [
+        4,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-9-south-wall-0",
+      "kind": "wall",
+      "center": [
+        30,
+        1.25,
+        26
+      ],
+      "size": [
+        12,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-9-west-wall-0",
+      "kind": "wall",
+      "center": [
+        24,
+        1.25,
+        8.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-9-west-wall-1",
+      "kind": "wall",
+      "center": [
+        24,
+        1.25,
+        21.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        9
+      ]
+    },
+    {
+      "id": "collider-room-9-east-wall-0",
+      "kind": "wall",
+      "center": [
+        36,
+        1.25,
+        15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        22
+      ]
+    },
+    {
+      "id": "collider-room-10-floor",
+      "kind": "floor",
+      "center": [
+        60,
+        -0.1,
+        -15
+      ],
+      "size": [
+        24,
+        0.2,
+        20
+      ]
+    },
+    {
+      "id": "collider-room-10-north-wall-0",
+      "kind": "wall",
+      "center": [
+        60,
+        1.25,
+        -25
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-10-south-wall-0",
+      "kind": "wall",
+      "center": [
+        60,
+        1.25,
+        -5
+      ],
+      "size": [
+        24,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-room-10-west-wall-0",
+      "kind": "wall",
+      "center": [
+        48,
+        1.25,
+        -21
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-10-west-wall-1",
+      "kind": "wall",
+      "center": [
+        48,
+        1.25,
+        -9
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-room-10-east-wall-0",
+      "kind": "wall",
+      "center": [
+        72,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        20
+      ]
+    },
+    {
+      "id": "collider-corridor-0-floor",
+      "kind": "floor",
+      "center": [
+        -13.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        11,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-0-wall-a",
+      "kind": "wall",
+      "center": [
+        -13.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-0-wall-b",
+      "kind": "wall",
+      "center": [
+        -13.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        11,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-1-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        2.5
+      ],
+      "size": [
+        4,
+        0.2,
+        7
+      ]
+    },
+    {
+      "id": "collider-corridor-1-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        2.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ]
+    },
+    {
+      "id": "collider-corridor-1-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        2.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        7
+      ]
+    },
+    {
+      "id": "collider-corridor-2-floor",
+      "kind": "floor",
+      "center": [
+        16.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        17,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-2-wall-a",
+      "kind": "wall",
+      "center": [
+        16.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        17,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-2-wall-b",
+      "kind": "wall",
+      "center": [
+        16.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        17,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-3-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        -33
+      ],
+      "size": [
+        4,
+        0.2,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-3-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        -33
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-3-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        -33
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-4-floor",
+      "kind": "floor",
+      "center": [
+        -45,
+        -0.1,
+        -15
+      ],
+      "size": [
+        8,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-4-wall-a",
+      "kind": "wall",
+      "center": [
+        -45,
+        1.25,
+        -17
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-4-wall-b",
+      "kind": "wall",
+      "center": [
+        -45,
+        1.25,
+        -13
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-5-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        0.5
+      ],
+      "size": [
+        4,
+        0.2,
+        11
+      ]
+    },
+    {
+      "id": "collider-corridor-5-wall-a",
+      "kind": "wall",
+      "center": [
+        -32,
+        1.25,
+        0.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        11
+      ]
+    },
+    {
+      "id": "collider-corridor-5-wall-b",
+      "kind": "wall",
+      "center": [
+        -28,
+        1.25,
+        0.5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        11
+      ]
+    },
+    {
+      "id": "collider-corridor-6-floor",
+      "kind": "floor",
+      "center": [
+        -30,
+        -0.1,
+        -32
+      ],
+      "size": [
+        4,
+        0.2,
+        14
+      ]
+    },
+    {
+      "id": "collider-corridor-6-wall-a",
+      "kind": "wall",
+      "center": [
+        -32,
+        1.25,
+        -32
+      ],
+      "size": [
+        0.3,
+        2.5,
+        14
+      ]
+    },
+    {
+      "id": "collider-corridor-6-wall-b",
+      "kind": "wall",
+      "center": [
+        -28,
+        1.25,
+        -32
+      ],
+      "size": [
+        0.3,
+        2.5,
+        14
+      ]
+    },
+    {
+      "id": "collider-corridor-7-floor",
+      "kind": "floor",
+      "center": [
+        0,
+        -0.1,
+        29
+      ],
+      "size": [
+        4,
+        0.2,
+        10
+      ]
+    },
+    {
+      "id": "collider-corridor-7-wall-a",
+      "kind": "wall",
+      "center": [
+        -2,
+        1.25,
+        29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        10
+      ]
+    },
+    {
+      "id": "collider-corridor-7-wall-b",
+      "kind": "wall",
+      "center": [
+        2,
+        1.25,
+        29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        10
+      ]
+    },
+    {
+      "id": "collider-corridor-8-floor",
+      "kind": "floor",
+      "center": [
+        19,
+        -0.1,
+        15
+      ],
+      "size": [
+        10,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-8-wall-a",
+      "kind": "wall",
+      "center": [
+        19,
+        1.25,
+        13
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-8-wall-b",
+      "kind": "wall",
+      "center": [
+        19,
+        1.25,
+        17
+      ],
+      "size": [
+        10,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-9-floor",
+      "kind": "floor",
+      "center": [
+        41.5,
+        -0.1,
+        -15
+      ],
+      "size": [
+        13,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-9-wall-a",
+      "kind": "wall",
+      "center": [
+        41.5,
+        1.25,
+        -17
+      ],
+      "size": [
+        13,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-9-wall-b",
+      "kind": "wall",
+      "center": [
+        41.5,
+        1.25,
+        -13
+      ],
+      "size": [
+        13,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-10-floor",
+      "kind": "floor",
+      "center": [
+        30,
+        -0.1,
+        0
+      ],
+      "size": [
+        4,
+        0.2,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-10-wall-a",
+      "kind": "wall",
+      "center": [
+        28,
+        1.25,
+        0
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-10-wall-b",
+      "kind": "wall",
+      "center": [
+        32,
+        1.25,
+        0
+      ],
+      "size": [
+        0.3,
+        2.5,
+        8
+      ]
+    },
+    {
+      "id": "collider-corridor-11-floor",
+      "kind": "floor",
+      "center": [
+        -13,
+        -0.1,
+        -45
+      ],
+      "size": [
+        8,
+        0.2,
+        4
+      ]
+    },
+    {
+      "id": "collider-corridor-11-wall-a",
+      "kind": "wall",
+      "center": [
+        -13,
+        1.25,
+        -47
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-corridor-11-wall-b",
+      "kind": "wall",
+      "center": [
+        -13,
+        1.25,
+        -43
+      ],
+      "size": [
+        8,
+        2.5,
+        0.3
+      ]
+    },
+    {
+      "id": "collider-door-0-a-frame",
+      "kind": "wall",
+      "center": [
+        -19,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-0-b-frame",
+      "kind": "wall",
+      "center": [
+        -8,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-1-a-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        -1
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-1-b-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        6
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-1-b",
+      "kind": "door",
+      "center": [
+        0,
+        1.25,
+        6
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-2-a-frame",
+      "kind": "wall",
+      "center": [
+        8,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-2-a",
+      "kind": "door",
+      "center": [
+        8,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-2-b-frame",
+      "kind": "wall",
+      "center": [
+        25,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-3-a-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        -37
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-3-a",
+      "kind": "door",
+      "center": [
+        0,
+        1.25,
+        -37
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-3-b-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        -29
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-3-b",
+      "kind": "door",
+      "center": [
+        0,
+        1.25,
+        -29
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-4-a-frame",
+      "kind": "wall",
+      "center": [
+        -49,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-4-b-frame",
+      "kind": "wall",
+      "center": [
+        -41,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-5-a-frame",
+      "kind": "wall",
+      "center": [
+        -30,
+        2.3,
+        -5
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-5-a",
+      "kind": "door",
+      "center": [
+        -30,
+        1.25,
+        -5
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-5-b-frame",
+      "kind": "wall",
+      "center": [
+        -30,
+        2.3,
+        6
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-6-a-frame",
+      "kind": "wall",
+      "center": [
+        -30,
+        2.3,
+        -39
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-6-b-frame",
+      "kind": "wall",
+      "center": [
+        -30,
+        2.3,
+        -25
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-6-b",
+      "kind": "door",
+      "center": [
+        -30,
+        1.25,
+        -25
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-7-a-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        24
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-7-b-frame",
+      "kind": "wall",
+      "center": [
+        0,
+        2.3,
+        34
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-8-a-frame",
+      "kind": "wall",
+      "center": [
+        14,
+        2.3,
+        15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-8-b-frame",
+      "kind": "wall",
+      "center": [
+        24,
+        2.3,
+        15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-9-a-frame",
+      "kind": "wall",
+      "center": [
+        35,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-9-a",
+      "kind": "door",
+      "center": [
+        35,
+        1.25,
+        -15
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-9-b-frame",
+      "kind": "wall",
+      "center": [
+        48,
+        2.3,
+        -15
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-10-a-frame",
+      "kind": "wall",
+      "center": [
+        30,
+        2.3,
+        -4
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-10-a",
+      "kind": "door",
+      "center": [
+        30,
+        1.25,
+        -4
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-10-b-frame",
+      "kind": "wall",
+      "center": [
+        30,
+        2.3,
+        4
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-10-b",
+      "kind": "door",
+      "center": [
+        30,
+        1.25,
+        4
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 1.5707963267948966
+    },
+    {
+      "id": "collider-door-11-a-frame",
+      "kind": "wall",
+      "center": [
+        -17,
+        2.3,
+        -45
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-11-b-frame",
+      "kind": "wall",
+      "center": [
+        -9,
+        2.3,
+        -45
+      ],
+      "size": [
+        0.3,
+        0.4,
+        4.6
+      ],
+      "rotationY": 0
+    },
+    {
+      "id": "collider-door-11-b",
+      "kind": "door",
+      "center": [
+        -9,
+        1.25,
+        -45
+      ],
+      "size": [
+        0.3,
+        2.5,
+        4
+      ],
+      "rotationY": 0
+    }
+  ],
+  "diagnostics": {
+    "warnings": [
+      "Multi-room layout uses procedural placeholder modules."
+    ],
+    "topology": {
+      "mode": "hub",
+      "roomCount": 11,
+      "edgeCount": 12,
+      "loopCount": 2,
+      "deadEndCount": 4,
+      "attempts": 16
+    }
+  },
+  "glbSha256": "55fbf293cba79523c0c25a1fff2b947b682bd3677571f4253a3dea9b37e284eb"
+}

@@ -26,7 +26,13 @@
     "generatorVersion": { "type": "string", "minLength": 1 },
     "exportId": { "type": "string", "minLength": 1 },
     "seed": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
-    "parameters": { "type": "object" },
+    "parameters": {
+      "oneOf": [
+        { "$ref": "#/$defs/minimumParameters" },
+        { "$ref": "#/$defs/dungeonParameters" }
+      ]
+    },
+    "resolvedParameters": { "$ref": "#/$defs/resolvedParameters" },
     "grid": { "type": "object" },
     "coordinateSystem": { "type": "object" },
     "assetPack": { "type": "object" },
@@ -38,6 +44,96 @@
     "modules": { "type": "array" },
     "colliders": { "type": "array" },
     "diagnostics": { "type": "object" }
+  },
+  "$defs": {
+    "range": {
+      "type": "array",
+      "prefixItems": [{ "type": "number" }, { "type": "number" }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "minimumParameters": {
+      "type": "object",
+      "required": ["width", "height", "corridorWidth", "doorOpenRate"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 16, "maximum": 512 },
+        "height": { "type": "integer", "minimum": 16, "maximum": 512 },
+        "corridorWidth": { "type": "integer", "minimum": 2, "maximum": 8 },
+        "doorOpenRate": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "dungeonParameters": {
+      "type": "object",
+      "required": [
+        "width", "height", "mode", "layoutWeights", "largeCellSize", "roomRate", "roomSize",
+        "roomMinSize", "roomMaxSize", "roomCountMin", "roomCountMax", "corridorWidth", "loopRate",
+        "deadEndRate", "branchTryMultiplier", "branchFromProtectedChance", "linearWingChance",
+        "mirrorXChance", "doorOpenRate"
+      ],
+      "properties": {
+        "width": { "type": "integer", "minimum": 16, "maximum": 512 },
+        "height": { "type": "integer", "minimum": 16, "maximum": 512 },
+        "mode": { "enum": ["random", "hub", "ring", "branch"] },
+        "layoutWeights": {
+          "type": "object",
+          "required": ["hub", "ring", "branch"],
+          "properties": {
+            "hub": { "type": "number", "minimum": 0, "maximum": 1 },
+            "ring": { "type": "number", "minimum": 0, "maximum": 1 },
+            "branch": { "type": "number", "minimum": 0, "maximum": 1 }
+          },
+          "additionalProperties": false
+        },
+        "largeCellSize": { "$ref": "#/$defs/range" },
+        "roomRate": { "$ref": "#/$defs/range" },
+        "roomSize": { "$ref": "#/$defs/range" },
+        "roomMinSize": { "$ref": "#/$defs/range" },
+        "roomMaxSize": { "$ref": "#/$defs/range" },
+        "roomCountMin": { "$ref": "#/$defs/range" },
+        "roomCountMax": { "$ref": "#/$defs/range" },
+        "corridorWidth": { "$ref": "#/$defs/range" },
+        "loopRate": { "$ref": "#/$defs/range" },
+        "deadEndRate": { "$ref": "#/$defs/range" },
+        "branchTryMultiplier": { "$ref": "#/$defs/range" },
+        "branchFromProtectedChance": { "$ref": "#/$defs/range" },
+        "linearWingChance": { "$ref": "#/$defs/range" },
+        "mirrorXChance": { "$ref": "#/$defs/range" },
+        "doorOpenRate": { "$ref": "#/$defs/range" }
+      },
+      "additionalProperties": false
+    },
+    "resolvedParameters": {
+      "type": "object",
+      "required": [
+        "width", "height", "topology", "largeCellSize", "roomRate", "roomSize", "roomMinSize",
+        "roomMaxSize", "roomCountMin", "roomCountMax", "roomCount", "corridorWidth", "loopRate",
+        "deadEndRate", "branchTryMultiplier", "branchFromProtectedChance", "linearWingChance",
+        "mirrorXChance", "doorOpenRate"
+      ],
+      "properties": {
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "topology": { "enum": ["hub", "ring", "branch"] },
+        "largeCellSize": { "type": "integer" },
+        "roomRate": { "type": "number" },
+        "roomSize": { "type": "number" },
+        "roomMinSize": { "type": "integer" },
+        "roomMaxSize": { "type": "integer" },
+        "roomCountMin": { "type": "integer" },
+        "roomCountMax": { "type": "integer" },
+        "roomCount": { "type": "integer" },
+        "corridorWidth": { "type": "integer" },
+        "loopRate": { "type": "number" },
+        "deadEndRate": { "type": "number" },
+        "branchTryMultiplier": { "type": "integer" },
+        "branchFromProtectedChance": { "type": "number" },
+        "linearWingChance": { "type": "number" },
+        "mirrorXChance": { "type": "number" },
+        "doorOpenRate": { "type": "number" }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false
 }

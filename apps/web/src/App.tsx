@@ -1,34 +1,23 @@
 import { exportDungeon } from "@mapgen/dungeon-renderer";
-import { generateMinimumDungeon } from "@mapgen/generator-core";
-import type { DungeonLayout } from "@mapgen/layout-schema";
+import { DEFAULT_DUNGEON_PARAMETERS, generateDungeon } from "@mapgen/generator-core";
+import type { DungeonLayout, DungeonParameters } from "@mapgen/layout-schema";
 import { useMemo, useState } from "react";
 
 import { CandidateMap } from "./CandidateMap";
 import { DungeonViewport } from "./DungeonViewport";
+import { ParameterPanel } from "./ParameterPanel";
 
-interface Controls {
+export interface GeneratorControls {
   readonly seed: number;
-  readonly width: number;
-  readonly height: number;
-  readonly corridorWidth: number;
-  readonly doorOpenRate: number;
+  readonly parameters: DungeonParameters;
 }
 
-const DEFAULTS: Controls = {
-  seed: 104729,
-  width: 160,
-  height: 160,
-  corridorWidth: 4,
-  doorOpenRate: 0.5,
-};
+const DEFAULTS: GeneratorControls = { seed: 104729, parameters: DEFAULT_DUNGEON_PARAMETERS };
 
-function makeCandidates(controls: Controls): DungeonLayout[] {
-  return Array.from({ length: 10 }, (_, index) => generateMinimumDungeon({
+function makeCandidates(controls: GeneratorControls): DungeonLayout[] {
+  return Array.from({ length: 10 }, (_, index) => generateDungeon({
     seed: (controls.seed + index) >>> 0,
-    width: controls.width,
-    height: controls.height,
-    corridorWidth: controls.corridorWidth,
-    doorOpenRate: controls.doorOpenRate,
+    parameters: controls.parameters,
   }));
 }
 
@@ -42,22 +31,16 @@ function downloadBlob(fileName: string, blob: Blob): void {
 }
 
 export function App() {
-  const [controls, setControls] = useState<Controls>(DEFAULTS);
-  const [generatedControls, setGeneratedControls] = useState<Controls>(DEFAULTS);
+  const [controls, setControls] = useState<GeneratorControls>(DEFAULTS);
+  const [generatedControls, setGeneratedControls] = useState<GeneratorControls>(DEFAULTS);
   const [candidates, setCandidates] = useState(() => makeCandidates(DEFAULTS));
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showColliders, setShowColliders] = useState(false);
   const [exportState, setExportState] = useState<"idle" | "working" | "done" | "error">("idle");
   const selected = candidates[selectedIndex]!;
-  const isStale = useMemo(
-    () => JSON.stringify(controls) !== JSON.stringify(generatedControls),
-    [controls, generatedControls],
-  );
-
-  const updateNumber = (key: keyof Controls, value: number) => {
-    setControls((current) => ({ ...current, [key]: value }));
-    setExportState("idle");
-  };
+  const resolved = selected.resolvedParameters!;
+  const topology = selected.diagnostics.topology!;
+  const isStale = useMemo(() => JSON.stringify(controls) !== JSON.stringify(generatedControls), [controls, generatedControls]);
 
   const regenerate = () => {
     setCandidates(makeCandidates(controls));
@@ -82,81 +65,28 @@ export function App() {
   return (
     <main className="workbench">
       <header className="masthead">
-        <div className="masthead__mark" aria-hidden="true">M/01</div>
-        <div>
-          <p className="eyebrow">GODOT-BOUND PROCEDURAL CARTOGRAPHY</p>
-          <h1>地下城测绘台</h1>
-        </div>
-        <div className="masthead__status">
-          <span className="status-light" />
-          MINIMUM SLICE<br />SCHEMA V1
-        </div>
+        <div className="masthead__mark" aria-hidden="true">M/02</div>
+        <div><p className="eyebrow">GODOT-BOUND PROCEDURAL CARTOGRAPHY</p><h1>地下城测绘台</h1></div>
+        <div className="masthead__status"><span className="status-light" /> MULTI-ROOM<br />SCHEMA V1</div>
       </header>
 
-      <section className="control-rail" aria-label="生成参数">
-        <div className="control-rail__heading">
-          <span>GENERATOR CONTROL</span>
-          <button type="button" className="text-button" onClick={() => setControls(DEFAULTS)}>恢复默认</button>
-        </div>
-        <label>
-          <span>基础 Seed</span>
-          <input
-            aria-label="基础 Seed"
-            type="number"
-            min="0"
-            max="4294967295"
-            value={controls.seed}
-            onChange={(event) => updateNumber("seed", Number(event.target.value))}
-          />
-        </label>
-        <div className="control-pair">
-          <label>
-            <span>地图宽度</span>
-            <input aria-label="地图宽度" type="number" min="32" max="512" value={controls.width} onChange={(event) => updateNumber("width", Number(event.target.value))} />
-          </label>
-          <label>
-            <span>地图深度</span>
-            <input aria-label="地图深度" type="number" min="24" max="512" value={controls.height} onChange={(event) => updateNumber("height", Number(event.target.value))} />
-          </label>
-        </div>
-        <label className="range-control">
-          <span>走廊宽度 <output>{controls.corridorWidth} m</output></span>
-          <input aria-label="走廊宽度" type="range" min="2" max="8" step="1" value={controls.corridorWidth} onChange={(event) => updateNumber("corridorWidth", Number(event.target.value))} />
-        </label>
-        <label className="range-control">
-          <span>门开启率 <output>{Math.round(controls.doorOpenRate * 100)}%</output></span>
-          <input aria-label="门开启率" type="range" min="0" max="1" step="0.01" value={controls.doorOpenRate} onChange={(event) => updateNumber("doorOpenRate", Number(event.target.value))} />
-        </label>
-        <button type="button" className="primary-button" onClick={regenerate}>
-          <span>生成 10 个候选</span><b>↗</b>
-        </button>
-        {isStale && <p className="stale-note">参数已改变 · 请重新生成</p>}
-      </section>
+      <ParameterPanel controls={controls} stale={isStale} onChange={(next) => { setControls(next); setExportState("idle"); }} onReset={() => { setControls(DEFAULTS); setExportState("idle"); }} onGenerate={regenerate} />
 
       <section className="candidate-strip" aria-label="候选地图">
         <div className="section-label"><span>01</span> 候选图纸 / SELECT ONE</div>
         <div className="candidate-grid">
-          {candidates.map((layout, index) => (
-            <CandidateMap key={layout.exportId} index={index} layout={layout} selected={index === selectedIndex} onSelect={() => { setSelectedIndex(index); setExportState("idle"); }} />
-          ))}
+          {candidates.map((layout, index) => <CandidateMap key={layout.exportId} index={index} layout={layout} selected={index === selectedIndex} onSelect={() => { setSelectedIndex(index); setExportState("idle"); }} />)}
         </div>
       </section>
 
       <section className="preview-stage">
         <div className="preview-stage__heading">
-          <div>
-            <div className="section-label"><span>02</span> 三维校样 / INSPECTION</div>
-            <p>当前候选 {String(selectedIndex + 1).padStart(2, "0")} / 10</p>
-          </div>
-          <label className="switch">
-            <input type="checkbox" checked={showColliders} onChange={(event) => setShowColliders(event.target.checked)} />
-            <span>显示碰撞盒</span>
-          </label>
+          <div><div className="section-label"><span>02</span> 三维校样 / INSPECTION</div><p>当前候选 {String(selectedIndex + 1).padStart(2, "0")} / 10 · {resolved.topology.toUpperCase()}</p></div>
+          <label className="switch"><input aria-label="显示碰撞体" type="checkbox" checked={showColliders} onChange={(event) => setShowColliders(event.target.checked)} /><span>显示碰撞体</span></label>
         </div>
         <div className="viewport-frame">
           <DungeonViewport layout={selected} showColliders={showColliders} />
-          <span className="corner corner--tl" /><span className="corner corner--tr" />
-          <span className="corner corner--bl" /><span className="corner corner--br" />
+          <span className="corner corner--tl" /><span className="corner corner--tr" /><span className="corner corner--bl" /><span className="corner corner--br" />
           <div className="viewport-caption">LMB ORBIT · RMB PAN · WHEEL ZOOM</div>
         </div>
       </section>
@@ -164,30 +94,21 @@ export function App() {
       <aside className="readout" aria-label="选中地图详情">
         <div className="section-label"><span>03</span> 导出读数 / MANIFEST</div>
         <dl>
-          <div><dt>Seed</dt><dd>Seed {selected.seed}</dd></div>
-          <div><dt>Grid</dt><dd>{selected.grid.width} × {selected.grid.height}</dd></div>
-          <div><dt>Rooms</dt><dd>{String(selected.rooms.length).padStart(2, "0")}</dd></div>
-          <div><dt>Corridors</dt><dd>{String(selected.corridors.length).padStart(2, "0")}</dd></div>
-          <div><dt>Colliders</dt><dd>{String(selected.colliders.length).padStart(2, "0")}</dd></div>
-          <div><dt>Doors</dt><dd>{selected.doors.map((door) => door.open ? "OPEN" : "SHUT").join(" / ")}</dd></div>
+          <div><dt>Seed</dt><dd>Seed {selected.seed}</dd></div><div><dt>Topology</dt><dd>{resolved.topology.toUpperCase()}</dd></div>
+          <div><dt>Grid</dt><dd>{selected.grid.width} × {selected.grid.height}</dd></div><div><dt>Rooms</dt><dd>{String(selected.rooms.length).padStart(2, "0")}</dd></div>
+          <div><dt>Edges / Loops</dt><dd>{topology.edgeCount} / {topology.loopCount}</dd></div><div><dt>Dead Ends</dt><dd>{topology.deadEndCount}</dd></div>
+          <div><dt>Corridor</dt><dd>{resolved.corridorWidth} m</dd></div><div><dt>Colliders</dt><dd>{String(selected.colliders.length).padStart(2, "0")}</dd></div>
+          <div><dt>Doors</dt><dd>{selected.doors.filter(({ open }) => open).length} OPEN / {selected.doors.filter(({ open }) => !open).length} SHUT</dd></div>
         </dl>
         <div className="export-box">
           <code>{selected.exportId}</code>
-          <button type="button" className="export-button" disabled={isStale || exportState === "working"} onClick={() => void exportSelected()}>
-            {exportState === "working" ? "正在封装…" : "导出 GLB + JSON"}
-          </button>
+          <button type="button" className="export-button" disabled={isStale || exportState === "working"} onClick={() => void exportSelected()}>{exportState === "working" ? "正在封装…" : "导出 GLB + JSON"}</button>
           <p className={`export-message export-message--${exportState}`}>
-            {exportState === "done" && "配对文件已下载"}
-            {exportState === "error" && "导出失败，请查看控制台"}
-            {exportState === "idle" && "Godot 导入插件将校验配对摘要"}
+            {exportState === "done" && "配对文件已下载。"}{exportState === "error" && "导出失败，请查看控制台。"}{exportState === "idle" && (isStale ? "参数已改变，请重新生成后导出。" : "Godot 导入插件将校验配对摘要。")}
           </p>
         </div>
       </aside>
-
-      <footer>
-        <span>MAPGEN // LOCAL TOOLCHAIN</span>
-        <span>Y-UP · RIGHT-HANDED · 1 GRID = 1 M</span>
-      </footer>
+      <footer><span>MAPGEN // LOCAL TOOLCHAIN</span><span>Y-UP · RIGHT-HANDED · 1 GRID = 1 M</span></footer>
     </main>
   );
 }

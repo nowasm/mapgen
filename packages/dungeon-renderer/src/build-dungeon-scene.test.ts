@@ -1,4 +1,4 @@
-import { generateMinimumDungeon } from "@mapgen/generator-core";
+import { generateDungeon, generateMinimumDungeon } from "@mapgen/generator-core";
 import { Box3, Group, Mesh, Vector3 } from "three";
 import { describe, expect, it } from "vitest";
 
@@ -44,5 +44,14 @@ describe("buildDungeonScene", () => {
         generatorVersion: layout.generatorVersion,
       }),
     );
+  });
+
+  it("renders all multi-room modular geometry by semantic role", () => {
+    const layout = generateDungeon({ seed: 104729 });
+    const result = buildDungeonScene(layout);
+
+    expect(result.counts.floors).toBe(layout.rooms.length + layout.corridors.length);
+    expect(result.counts.walls).toBeGreaterThan(layout.rooms.length * 4);
+    expect(result.counts.doors).toBe(layout.doors.length * 2);
   });
 });

@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Baker = preload("res://addons/mapgen_importer/mapgen_baker.gd")
-const DEFAULT_LAYOUT := "res://test-project/fixtures/dungeon-minimum-00019919-160x160.layout.json"
+const DEFAULT_LAYOUT := "res://test-project/fixtures/dungeon-dungeon-00019919-hub.layout.json"
 var _failed := false
 
 
@@ -10,6 +10,8 @@ func _init() -> void:
 	var inspected: Dictionary = baker.inspect_pair(DEFAULT_LAYOUT)
 	_assert(inspected.ok, "Pair inspection failed: %s" % inspected.get("error", "unknown"))
 	_assert(inspected.layout.schemaVersion == 1, "Unexpected schema version")
+	_assert(inspected.layout.rooms.size() >= 5, "Expected a multi-room dungeon")
+	_assert(inspected.layout.diagnostics.topology.mode == "hub", "Unexpected deterministic topology")
 
 	var built: Dictionary = baker.build_scene(DEFAULT_LAYOUT)
 	_assert(built.ok, "Scene build failed: %s" % built.get("error", "unknown"))
@@ -18,6 +20,7 @@ func _init() -> void:
 	_assert(root.get_node_or_null("VisualModel") != null, "VisualModel is missing")
 	_assert(root.get_node_or_null("Collision/StaticBody3D") != null, "StaticBody3D is missing")
 	_assert(root.get_node("Collision/StaticBody3D").get_child_count() == built.layout.colliders.size(), "Collider count mismatch")
+	_assert(built.layout.colliders.size() > 50, "Expected modular multi-room collision")
 	_assert(root.get_node_or_null("PlayerSpawn") is Marker3D, "PlayerSpawn is missing")
 	_assert(root.get_node_or_null("DungeonMetadata") != null, "DungeonMetadata is missing")
 	root.free()

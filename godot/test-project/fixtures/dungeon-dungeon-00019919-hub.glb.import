@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://kgpiqs4qwani"
-path="res://.godot/imported/dungeon-minimum-00019919-160x160.glb-81555616caad9ce069dcbc0b039b07ff.scn"
+uid="uid://c42cdymu3wh2a"
+path="res://.godot/imported/dungeon-dungeon-00019919-hub.glb-c9c370f33b8150e3256868684fb62967.scn"
 
 [deps]
 
-source_file="res://test-project/fixtures/dungeon-minimum-00019919-160x160.glb"
-dest_files=["res://.godot/imported/dungeon-minimum-00019919-160x160.glb-81555616caad9ce069dcbc0b039b07ff.scn"]
+source_file="res://test-project/fixtures/dungeon-dungeon-00019919-hub.glb"
+dest_files=["res://.godot/imported/dungeon-dungeon-00019919-hub.glb-c9c370f33b8150e3256868684fb62967.scn"]
 
 [params]
 

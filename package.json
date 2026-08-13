@@ -7,7 +7,7 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --filter @mapgen/web dev",
-    "generate:fixture": "tsx tools/generate-minimum-fixture.ts",
+    "generate:fixture": "tsx tools/generate-dungeon-fixture.ts",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },

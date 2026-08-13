@@ -1,10 +1,8 @@
 # Mapgen
 
-面向 Godot 的房间—走廊式三维地下城生成器。网页端生成、预览并导出配对的 GLB 与
-布局 JSON；Godot 4 插件将它们固定烘焙成带原生碰撞和出生点的可编辑 `.tscn` 场景。
+面向 Godot 的房间—走廊式三维地下城生成器。网页端确定性生成、预览并导出配对的 GLB 与布局 JSON；Godot 4 插件将它们固定烘焙成带原生碰撞和出生点的可编辑 `.tscn` 场景。
 
-当前完成的是第一阶段最小端到端切片：两个房间、一条走廊和两个固定状态门。它用于验证
-坐标、导出契约和 Godot 管线，尚不是完整 Dungeon 算法。
+当前第二阶段已实现单层、无屋顶的多房间地下城：Hub、Ring、Branch 与加权 Random 四种拓扑，完整的原版默认参数范围，门洞感知墙体、固定门状态及角色可行走碰撞。
 
 ## 本地运行
 
@@ -15,21 +13,18 @@ pnpm install
 pnpm dev
 ```
 
-打开 `http://127.0.0.1:5173/`。修改 Seed、地图尺寸、走廊宽度和门开启率，点击
-“生成 10 个候选”，选择候选后可观察三维模型、显示碰撞盒并导出：
+打开 `http://127.0.0.1:5173/`。在左侧修改 Seed、布局模式和参数区间，点击“生成 10 个候选”，选中候选后可检查三维模型、显示碰撞体，并导出：
 
 ```text
 dungeon-<exportId>.glb
 dungeon-<exportId>.layout.json
 ```
 
-两个文件必须保持同名并放在同一目录。JSON 保存 GLB SHA-256，Godot 插件会拒绝错配。
+两个文件必须同名、同目录；JSON 保存 GLB SHA-256，Godot 插件会拒绝错配文件。
 
 ## 导入 Godot
 
-将 [Godot 插件](godot/addons/mapgen_importer) 复制到目标 Godot 4 工程的
-`addons/mapgen_importer`，在 **Project Settings → Plugins** 中启用 **Mapgen Importer**。
-右侧 **Mapgen Baker** 面板选择 `*.layout.json` 后点击烘焙，即可得到：
+将 [Godot 插件](godot/addons/mapgen_importer) 复制到目标 Godot 4 工程的 `addons/mapgen_importer`，在 **Project Settings → Plugins** 启用 **Mapgen Importer**。在右侧 **Mapgen Baker** 面板选择 `*.layout.json` 后烘焙，可得到：
 
 ```text
 DungeonRoot
@@ -38,8 +33,6 @@ DungeonRoot
 ├── PlayerSpawn
 └── DungeonMetadata
 ```
-
-详细操作见 [Godot 插件说明](godot/README.md)。
 
 ## 验证
 
@@ -53,12 +46,12 @@ pnpm generate:fixture
   --headless --path godot --script res://test-project/tests/import_smoke_test.gd
 ```
 
-完整验证证据见 [最小端到端验证记录](docs/verification/minimum-end-to-end.md)。
+固定样本 seed 104729 当前生成 11 个 Hub 房间和 149 个 Godot 原生碰撞体。详细证据见 [多房间端到端验证记录](docs/verification/multi-room-end-to-end.md)。
 
 ## 文档
 
 - [地下城地图生成器设计](docs/plans/2026-08-13-dungeon-map-generator-design.md)
-- [第一阶段实施计划](docs/plans/2026-08-13-minimum-end-to-end-implementation.md)
+- [多房间实现计划](docs/plans/2026-08-13-multi-room-dungeon-implementation.md)
 - [架构决策记录](docs/adr/README.md)
 
 原 RPG-Cobo 仓库仅作为行为与资源参考；资源迁移必须保留来源和许可信息。
