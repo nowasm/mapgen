@@ -6,8 +6,11 @@ coverage/
 *.log
 .vite/
 .godot/
+.vercel/
 exports/
 assets/dungeon_collection_2.zip
 assets/kenney_modular-dungeon-kit_1.0.zip
 assets/kenney_modular-cave-kit_1.0.zip
 assets/kenney_building-kit.zip
+
+.vercel

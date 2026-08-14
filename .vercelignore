@@ -1,0 +1,17 @@
+godot/
+docs/
+tools/
+
+assets/kenney_building-kit/Models/
+assets/kenney_building-kit/Previews/
+assets/kenney_building-kit/*.html
+assets/kenney_building-kit/*.png
+assets/kenney_building-kit/*.url
+
+assets/textures/bricks_and_tiles/**/*_ambientocclusion.png
+assets/textures/bricks_and_tiles/**/*_emission.png
+assets/textures/bricks_and_tiles/**/*_height.png
+assets/textures/bricks_and_tiles/**/*_normal.png
+assets/textures/bricks_and_tiles/**/*_roughness.png
+assets/textures/bricks_and_tiles/**/*.sbsar
+assets/textures/bricks_and_tiles/**/ReadMe.txt
