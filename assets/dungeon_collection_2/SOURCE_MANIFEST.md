@@ -9,4 +9,6 @@ Mapgen 第一版使用以下模块：
 - 门框：`struct_block_normal.obj/.mtl`
 - 门扇：`prop_wall_big_door_wood.obj/.mtl`
 
+当前所有正式可见模块种类（地板、墙体、门框、开启门和关闭门）都映射到上述 Dungeon Collection 2 模型，没有旧视觉包或程序化盒体回退。网页中的碰撞调试线框不属于美术资源，继续由碰撞盒实时生成。
+
 `tools/build-dungeon-collection-2-pack.ts` 离线解析 OBJ 三角面和 MTL `Kd` 颜色，输出 `dungeon-visual-pack.json`。该文件记录所有已用输入文件的 SHA-256。转换包含坐标归一化、重复铺设和语义尺寸适配；原始 OBJ/MTL 不在运行时加载。

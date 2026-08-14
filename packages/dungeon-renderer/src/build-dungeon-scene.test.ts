@@ -58,16 +58,28 @@ describe("buildDungeonScene", () => {
   it("uses traceable Dungeon Collection 2 modular geometry", () => {
     const layout = generateDungeon({ seed: 104729 });
     const { root } = buildDungeonScene(layout);
-    const wall = root.getObjectByName("Walls")!.children.find((child) => child.userData.kind === "wall") as Mesh;
-    const door = root.getObjectByName("Doors")!.children.find((child) => child.userData.kind === "door-closed") as Mesh;
+    const expectedSources = {
+      floor: "struct_floor_normal",
+      wall: "struct_wall_straight_main",
+      "door-frame": "struct_block_normal",
+      "door-open": "prop_wall_big_door_wood",
+      "door-closed": "prop_wall_big_door_wood",
+    } as const;
+    const meshes = root.getObjectsByProperty("type", "Mesh") as Mesh[];
 
     expect(root.userData).toEqual(expect.objectContaining({
       visualPackId: "dungeon-collection-2",
       visualPackLicense: "UNSPECIFIED (user-provided)",
     }));
-    expect(wall.userData.sourceModel).toBe("struct_wall_straight_main");
-    expect(wall.geometry.getAttribute("color").count).toBeGreaterThan(24);
-    expect(door.userData.sourceModel).toBe("prop_wall_big_door_wood");
-    expect(door.geometry.getAttribute("position").count).toBeGreaterThan(36);
+    for (const [kind, sourceModel] of Object.entries(expectedSources)) {
+      const mesh = meshes.find((candidate) => candidate.userData.kind === kind);
+      expect(mesh, `Missing rendered ${kind}`).toBeDefined();
+      expect(mesh!.userData).toEqual(expect.objectContaining({
+        visualPackId: "dungeon-collection-2",
+        sourceModel,
+      }));
+      expect(mesh!.geometry.getAttribute("color").count).toBe(mesh!.geometry.getAttribute("position").count);
+    }
+    expect(meshes.every((mesh) => mesh.userData.visualPackId === "dungeon-collection-2")).toBe(true);
   });
 });

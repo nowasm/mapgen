@@ -219,6 +219,6 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
     spawn: { position: spawn, rotationY: -Math.PI / 2 },
     modules,
     colliders,
-    diagnostics: { warnings: ["Minimum slice uses procedural placeholder modules."] },
+    diagnostics: { warnings: [] },
   });
 }
