@@ -5,10 +5,24 @@ export const dungeonLayoutJsonSchema = layoutSchema;
 
 export type Vec3 = readonly [number, number, number];
 export type ColliderKind = "floor" | "wall" | "door";
-export type ModuleKind = "floor" | "wall" | "door-frame" | "door-open" | "door-closed";
+export type ModuleKind = "floor" | "wall" | "room-shell" | "corridor-shell" | "door-frame" | "door-open" | "door-closed";
 export type NumericRange = readonly [number, number];
 export type ConcreteLayoutMode = "hub" | "ring" | "branch";
 export type LayoutMode = "random" | ConcreteLayoutMode;
+export type RoomVisualPreset = "room-small" | "room-large" | "room-wide";
+export type RoomCornerStyle = "column" | "diagonal" | "round";
+export type ModuleOpeningSide = "north" | "south" | "west" | "east";
+export type CorridorOrientation = "horizontal" | "vertical";
+
+export interface DungeonAppearance {
+  readonly materialPackId: string;
+  readonly wallTextureId: string;
+  readonly floorTextureId: string;
+  readonly doorFrameTextureId?: string;
+  readonly wallCoverageMeters: number;
+  readonly floorCoverageMeters: number;
+  readonly doorFrameCoverageMeters?: number;
+}
 
 export interface MinimumDungeonParameters {
   readonly width: number;
@@ -37,6 +51,10 @@ export interface DungeonParameters {
   readonly linearWingChance: NumericRange;
   readonly mirrorXChance: NumericRange;
   readonly doorOpenRate: NumericRange;
+  readonly roomCornerStyle: RoomCornerStyle;
+  readonly roomVariationRate: NumericRange;
+  readonly floorVariationRate: NumericRange;
+  readonly wallVariationRate: NumericRange;
 }
 
 export interface ResolvedDungeonParameters {
@@ -59,6 +77,10 @@ export interface ResolvedDungeonParameters {
   readonly linearWingChance: number;
   readonly mirrorXChance: number;
   readonly doorOpenRate: number;
+  readonly roomCornerStyle: RoomCornerStyle;
+  readonly roomVariationRate: number;
+  readonly floorVariationRate: number;
+  readonly wallVariationRate: number;
 }
 
 export interface GridDefinition {
@@ -74,6 +96,10 @@ export interface RoomDefinition {
   readonly width: number;
   readonly depth: number;
   readonly kind: "entrance" | "exit" | "normal";
+  readonly visualPreset?: RoomVisualPreset;
+  readonly visualVariation?: boolean;
+  readonly floorVariation?: boolean;
+  readonly wallVariation?: boolean;
 }
 
 export interface CorridorDefinition {
@@ -82,6 +108,7 @@ export interface CorridorDefinition {
   readonly z: number;
   readonly width: number;
   readonly depth: number;
+  readonly orientation?: CorridorOrientation;
 }
 
 export interface ConnectionDefinition {
@@ -94,9 +121,17 @@ export interface ConnectionDefinition {
 
 export interface DoorDefinition {
   readonly id: string;
+  readonly roomId?: string;
   readonly position: Vec3;
   readonly rotationY: number;
   readonly open: boolean;
+}
+
+export interface ModuleOpening {
+  readonly side: ModuleOpeningSide;
+  readonly offset: number;
+  readonly width: number;
+  readonly height: number;
 }
 
 export interface ModuleDefinition {
@@ -105,6 +140,8 @@ export interface ModuleDefinition {
   readonly center: Vec3;
   readonly size: Vec3;
   readonly rotationY: number;
+  readonly assetKey?: string;
+  readonly openings?: readonly ModuleOpening[];
 }
 
 export interface ColliderDefinition {
@@ -120,6 +157,7 @@ export interface DungeonLayout {
   readonly generatorVersion: string;
   readonly exportId: string;
   readonly glbSha256?: string;
+  readonly appearance?: DungeonAppearance;
   readonly seed: number;
   readonly parameters: MinimumDungeonParameters | DungeonParameters;
   readonly resolvedParameters?: ResolvedDungeonParameters;
@@ -234,6 +272,9 @@ function validateDungeonParameters(parameters: Record<string, unknown>): string 
   if (!weights.every((weight) => isNumberWithin(weight, 0, 1)) || weights.reduce<number>((sum, weight) => sum + Number(weight), 0) <= 0) {
     return "layoutWeights must contain non-negative hub, ring, and branch weights";
   }
+  if (!["column", "diagonal", "round"].includes(parameters.roomCornerStyle as string)) {
+    return "roomCornerStyle must be column, diagonal, or round";
+  }
 
   const ranges: readonly [string, number, number, boolean][] = [
     ["largeCellSize", 10, 50, true],
@@ -251,6 +292,9 @@ function validateDungeonParameters(parameters: Record<string, unknown>): string 
     ["linearWingChance", 0, 1, false],
     ["mirrorXChance", 0, 1, false],
     ["doorOpenRate", 0, 1, false],
+    ["roomVariationRate", 0, 1, false],
+    ["floorVariationRate", 0, 1, false],
+    ["wallVariationRate", 0, 1, false],
   ];
   for (const [name, minimum, maximum, integer] of ranges) {
     if (!isNumericRange(parameters[name], minimum, maximum, integer)) {
@@ -268,6 +312,9 @@ function validateResolvedParameters(value: unknown): string | null {
   if (!concreteLayoutModes.includes(value.topology as ConcreteLayoutMode)) {
     return "resolvedParameters topology is invalid";
   }
+  if (!["column", "diagonal", "round"].includes(value.roomCornerStyle as string)) {
+    return "resolvedParameters roomCornerStyle is invalid";
+  }
   const integers: readonly [string, number, number][] = [
     ["largeCellSize", 10, 50],
     ["roomMinSize", 6, 20],
@@ -281,7 +328,7 @@ function validateResolvedParameters(value: unknown): string | null {
   if (integers.some(([name, minimum, maximum]) => !isIntegerWithin(value[name], minimum, maximum))) {
     return "resolvedParameters integer value is invalid";
   }
-  const rates = ["roomRate", "loopRate", "deadEndRate", "branchFromProtectedChance", "linearWingChance", "mirrorXChance", "doorOpenRate"] as const;
+  const rates = ["roomRate", "loopRate", "deadEndRate", "branchFromProtectedChance", "linearWingChance", "mirrorXChance", "doorOpenRate", "roomVariationRate", "floorVariationRate", "wallVariationRate"] as const;
   if (rates.some((name) => !isNumberWithin(value[name], 0, 1)) || !isNumberWithin(value.roomSize, 0.5, 1.5)) {
     return "resolvedParameters rate or roomSize is invalid";
   }
@@ -300,6 +347,18 @@ function validateLayout(value: unknown): string | null {
   if (!isNonEmptyString(value.exportId)) return "exportId must be a non-empty string";
   if (value.glbSha256 !== undefined && !isNonEmptyString(value.glbSha256)) {
     return "glbSha256 must be a non-empty string when present";
+  }
+  if (value.appearance !== undefined) {
+    if (
+      !isRecord(value.appearance) ||
+      !isNonEmptyString(value.appearance.materialPackId) ||
+      !isNonEmptyString(value.appearance.wallTextureId) ||
+      !isNonEmptyString(value.appearance.floorTextureId) ||
+      (value.appearance.doorFrameTextureId !== undefined && !isNonEmptyString(value.appearance.doorFrameTextureId)) ||
+      !isNumberWithin(value.appearance.wallCoverageMeters, 0.25, 32) ||
+      !isNumberWithin(value.appearance.floorCoverageMeters, 0.25, 32) ||
+      (value.appearance.doorFrameCoverageMeters !== undefined && !isNumberWithin(value.appearance.doorFrameCoverageMeters, 0.25, 32))
+    ) return "appearance is invalid";
   }
   if (!isIntegerWithin(value.seed, 0, 0xffff_ffff)) return "seed must be a uint32";
 
@@ -341,10 +400,17 @@ function validateLayout(value: unknown): string | null {
 
   if (!Array.isArray(value.rooms) || !value.rooms.every((room) => {
     if (!hasFiniteRect(room) || !isRecord(room)) return false;
-    return room.kind === "entrance" || room.kind === "exit" || room.kind === "normal";
+    return (room.kind === "entrance" || room.kind === "exit" || room.kind === "normal") &&
+      (room.visualPreset === undefined || room.visualPreset === "room-small" || room.visualPreset === "room-large" || room.visualPreset === "room-wide") &&
+      (room.visualVariation === undefined || typeof room.visualVariation === "boolean") &&
+      (room.floorVariation === undefined || typeof room.floorVariation === "boolean") &&
+      (room.wallVariation === undefined || typeof room.wallVariation === "boolean");
   })) return "rooms are invalid";
 
-  if (!Array.isArray(value.corridors) || !value.corridors.every(hasFiniteRect)) {
+  if (!Array.isArray(value.corridors) || !value.corridors.every((corridor) => (
+    hasFiniteRect(corridor) && isRecord(corridor) &&
+    (corridor.orientation === undefined || corridor.orientation === "horizontal" || corridor.orientation === "vertical")
+  ))) {
     return "corridors are invalid";
   }
 
@@ -361,6 +427,7 @@ function validateLayout(value: unknown): string | null {
   if (!Array.isArray(value.doors) || !value.doors.every((door) => (
     isRecord(door) &&
     isNonEmptyString(door.id) &&
+    (door.roomId === undefined || isNonEmptyString(door.roomId)) &&
     isVec3(door.position) &&
     isFiniteNumber(door.rotationY) &&
     typeof door.open === "boolean"
@@ -372,14 +439,22 @@ function validateLayout(value: unknown): string | null {
     !isFiniteNumber(value.spawn.rotationY)
   ) return "spawn is invalid";
 
-  const moduleKinds: readonly unknown[] = ["floor", "wall", "door-frame", "door-open", "door-closed"];
+  const moduleKinds: readonly unknown[] = ["floor", "wall", "room-shell", "corridor-shell", "door-frame", "door-open", "door-closed"];
   if (!Array.isArray(value.modules) || !value.modules.every((module) => (
     isRecord(module) &&
     isNonEmptyString(module.id) &&
     moduleKinds.includes(module.kind) &&
     isVec3(module.center) &&
     isVec3(module.size, true) &&
-    isFiniteNumber(module.rotationY)
+    isFiniteNumber(module.rotationY) &&
+    (module.assetKey === undefined || isNonEmptyString(module.assetKey)) &&
+    (module.openings === undefined || (Array.isArray(module.openings) && module.openings.every((opening) => (
+      isRecord(opening) &&
+      ["north", "south", "west", "east"].includes(opening.side as string) &&
+      isFiniteNumber(opening.offset) &&
+      isFiniteNumber(opening.width) && opening.width > 0 &&
+      isFiniteNumber(opening.height) && opening.height > 0
+    ))))
   ))) return "modules are invalid";
 
   const colliderKinds: readonly unknown[] = ["floor", "wall", "door"];

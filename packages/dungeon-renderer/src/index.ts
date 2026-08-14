@@ -1,2 +1,7 @@
-export { buildDungeonScene, type DungeonSceneResult } from "./build-dungeon-scene";
-export { exportDungeon, type ExportedDungeon } from "./export-dungeon";
+export {
+  buildDungeonScene,
+  type DungeonSceneBuildOptions,
+  type DungeonSceneResult,
+  type DungeonTextureSet,
+} from "./build-dungeon-scene";
+export { exportDungeon, type ExportDungeonOptions, type ExportedDungeon } from "./export-dungeon";

@@ -36,7 +36,7 @@ export function generateDungeon(options: GenerateDungeonOptions): DungeonLayout 
     resolvedParameters,
     grid: { width: resolvedParameters.width, height: resolvedParameters.height, cellSize: 1 },
     coordinateSystem: { up: "Y", forward: "-Z", handedness: "right" },
-    assetPack: { id: "dungeon-collection-2", version: "1" },
+    assetPack: { id: "kenney-building-kit-1.0", version: "1" },
     rooms: placed.rooms,
     connections: placed.connections,
     corridors: placed.corridors,

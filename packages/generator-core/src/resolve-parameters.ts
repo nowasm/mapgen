@@ -59,5 +59,9 @@ export function resolveDungeonParameters(
     linearWingChance: resolveFloat(parameters.linearWingChance, random),
     mirrorXChance: resolveFloat(parameters.mirrorXChance, random),
     doorOpenRate: resolveFloat(parameters.doorOpenRate, random),
+    roomCornerStyle: parameters.roomCornerStyle,
+    roomVariationRate: resolveFloat(parameters.roomVariationRate, random),
+    floorVariationRate: resolveFloat(parameters.floorVariationRate, random),
+    wallVariationRate: resolveFloat(parameters.wallVariationRate, random),
   };
 }

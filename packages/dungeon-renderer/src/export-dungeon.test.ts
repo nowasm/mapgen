@@ -16,4 +16,21 @@ describe("exportDungeon", () => {
     expect(json.glbSha256).toBe(exported.glbSha256);
     expect(exported.baseName).toBe(`dungeon-${layout.exportId}`);
   });
+
+  it("snapshots editor appearance into the paired layout JSON", async () => {
+    const layout = generateMinimumDungeon({ seed: 12 });
+    const appearance = {
+      materialPackId: "bricks-and-tiles-1.0",
+      wallTextureId: "bt-2-001",
+      floorTextureId: "bt-2-002",
+      doorFrameTextureId: "follow-wall",
+      wallCoverageMeters: 2,
+      floorCoverageMeters: 3,
+      doorFrameCoverageMeters: 2,
+    } as const;
+    const exported = await exportDungeon(layout, { appearance });
+    const json = JSON.parse(exported.layoutJson) as Record<string, unknown>;
+
+    expect(json.appearance).toEqual(appearance);
+  });
 });

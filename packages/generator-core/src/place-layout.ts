@@ -19,9 +19,8 @@ export interface PlacedLayout {
   readonly pitch: number;
 }
 
-const WALL_HEIGHT = 2.5;
+const WALL_HEIGHT = 3.2;
 const MARGIN = 4;
-
 function evenDimension(value: number): number {
   return Math.max(2, Math.floor(value / 2) * 2);
 }
@@ -71,6 +70,9 @@ export function placeLayout(
       width,
       depth,
       kind,
+      visualVariation: random.next() < resolved.roomVariationRate,
+      floorVariation: random.next() < resolved.floorVariationRate,
+      wallVariation: random.next() < resolved.wallVariationRate,
     };
     roomByNodeId.set(node.id, room);
     return room;
@@ -91,12 +93,14 @@ export function placeLayout(
     const secondRoom = firstRoom === fromRoom ? toRoom : fromRoom;
     const corridor: CorridorDefinition = horizontal ? {
       id: `corridor-${edge.id.slice(5)}`,
+      orientation: "horizontal",
       x: firstRoom.x + firstRoom.width,
       z: firstRoom.z + firstRoom.depth / 2 - resolved.corridorWidth / 2,
       width: secondRoom.x - (firstRoom.x + firstRoom.width),
       depth: resolved.corridorWidth,
     } : {
       id: `corridor-${edge.id.slice(5)}`,
+      orientation: "vertical",
       x: firstRoom.x + firstRoom.width / 2 - resolved.corridorWidth / 2,
       z: firstRoom.z + firstRoom.depth,
       width: resolved.corridorWidth,
@@ -112,11 +116,13 @@ export function placeLayout(
       : corridor.x + corridor.width / 2 - resolved.width / 2;
     const firstDoor: DoorDefinition = horizontal ? {
       id: `door-${edge.id.slice(5)}-a`,
+      roomId: firstRoom.id,
       position: [corridor.x - resolved.width / 2, WALL_HEIGHT / 2, centerLine],
       rotationY: 0,
       open: random.next() < resolved.doorOpenRate,
     } : {
       id: `door-${edge.id.slice(5)}-a`,
+      roomId: firstRoom.id,
       position: [centerLine, WALL_HEIGHT / 2, corridor.z - resolved.height / 2],
       rotationY: Math.PI / 2,
       open: random.next() < resolved.doorOpenRate,
@@ -124,11 +130,13 @@ export function placeLayout(
     const secondDoor: DoorDefinition = horizontal ? {
       ...firstDoor,
       id: `door-${edge.id.slice(5)}-b`,
+      roomId: secondRoom.id,
       position: [corridor.x + corridor.width - resolved.width / 2, WALL_HEIGHT / 2, centerLine],
       open: random.next() < resolved.doorOpenRate,
     } : {
       ...firstDoor,
       id: `door-${edge.id.slice(5)}-b`,
+      roomId: secondRoom.id,
       position: [centerLine, WALL_HEIGHT / 2, corridor.z + corridor.depth - resolved.height / 2],
       open: random.next() < resolved.doorOpenRate,
     };

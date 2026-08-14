@@ -9,6 +9,14 @@ function overlaps(a: { x: number; z: number; width: number; depth: number }, b: 
 }
 
 describe("multi-room placement", () => {
+  it("uses modular rounded rooms without fixed visual presets by default", () => {
+    const layout = generateDungeon({ seed: 104729 });
+
+    expect(DEFAULT_DUNGEON_PARAMETERS.roomCornerStyle).toBe("round");
+    expect(layout.rooms.every(({ visualPreset }) => visualPreset === undefined)).toBe(true);
+    expect(layout.rooms.every((room) => layout.modules.filter(({ id, assetKey }) => id.startsWith(`module-${room.id}-`) && assetKey === "wall-corner-round").length === 4)).toBe(true);
+  });
+
   it.each(["hub", "ring", "branch"] as const)("fits 100 deterministic %s layouts inside the map", (mode: ConcreteLayoutMode) => {
     for (let seed = 0; seed < 100; seed += 1) {
       const layout = generateDungeon({
@@ -55,6 +63,7 @@ describe("multi-room placement", () => {
       expect(connection.doorIds).toHaveLength(2);
       expect(connection.doorIds.every((id) => doorIds.has(id))).toBe(true);
     }
+    expect(layout.doors.every(({ roomId }) => roomId !== undefined && roomIds.has(roomId))).toBe(true);
     expect(layout.spawn.position[0]).toBeGreaterThan(entrance.x - layout.grid.width / 2);
     expect(layout.spawn.position[0]).toBeLessThan(entrance.x + entrance.width - layout.grid.width / 2);
     expect(layout.spawn.position[2]).toBeGreaterThan(entrance.z - layout.grid.height / 2);
@@ -74,5 +83,28 @@ describe("multi-room placement", () => {
     });
 
     expect(layout.rooms).toHaveLength(40);
+  });
+
+  it("keeps arbitrary parameter-driven dimensions when rounded rooms are forced", () => {
+    const layout = generateDungeon({
+      seed: 314159,
+      parameters: {
+        ...DEFAULT_DUNGEON_PARAMETERS,
+        roomCornerStyle: "round",
+        roomVariationRate: [1, 1],
+      },
+    });
+    expect(layout.rooms.every(({ visualPreset }) => visualPreset === undefined)).toBe(true);
+    expect(new Set(layout.rooms.map(({ width, depth }) => `${width}x${depth}`)).size).toBeGreaterThan(3);
+    expect(layout.rooms.every(({ visualVariation }) => visualVariation)).toBe(true);
+  });
+
+  it("keeps every room rectangular when rounded rooms are disabled", () => {
+    const layout = generateDungeon({
+      seed: 314159,
+      parameters: { ...DEFAULT_DUNGEON_PARAMETERS, roomCornerStyle: "column" },
+    });
+
+    expect(layout.rooms.every(({ visualPreset }) => visualPreset === undefined)).toBe(true);
   });
 });

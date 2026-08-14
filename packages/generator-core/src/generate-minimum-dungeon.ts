@@ -137,6 +137,7 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
   ];
   const corridor = {
     id: "corridor-main",
+    orientation: "horizontal",
     x: leftX + roomWidth,
     z: corridorZ,
     width: corridorLength,
@@ -147,8 +148,8 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
   const rightDoorX = rightX - parameters.width / 2;
   const doorZ = corridorZ + parameters.corridorWidth / 2 - parameters.height / 2;
   const doors = [
-    { id: "door-entrance", position: [leftDoorX, WALL_HEIGHT / 2, doorZ] as Vec3, rotationY: 0, open: random.next() < parameters.doorOpenRate },
-    { id: "door-exit", position: [rightDoorX, WALL_HEIGHT / 2, doorZ] as Vec3, rotationY: 0, open: random.next() < parameters.doorOpenRate },
+    { id: "door-entrance", roomId: "room-entrance", position: [leftDoorX, WALL_HEIGHT / 2, doorZ] as Vec3, rotationY: 0, open: random.next() < parameters.doorOpenRate },
+    { id: "door-exit", roomId: "room-exit", position: [rightDoorX, WALL_HEIGHT / 2, doorZ] as Vec3, rotationY: 0, open: random.next() < parameters.doorOpenRate },
   ] as const;
 
   const colliders: ColliderDefinition[] = [];
@@ -172,12 +173,24 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
   addBox(colliders, modules, "corridor-south-wall", "wall", [corridorCenterX, WALL_HEIGHT / 2, corridorMaxZ], [corridor.width, WALL_HEIGHT, WALL_THICKNESS]);
 
   for (const door of doors) {
+    const room = rooms.find(({ id }) => id === door.roomId)!;
+    const roomCenterX = room.x + room.width / 2 - parameters.width / 2;
+    const swingDirection = roomCenterX < door.position[0] ? -1 : 1;
+    const leafRotation = door.open ? swingDirection * Math.PI / 2 : 0;
+    const halfWidth = parameters.corridorWidth / 2;
+    const leafCenter: Vec3 = door.open
+      ? [
+        door.position[0] + Math.sin(leafRotation) * halfWidth,
+        door.position[1],
+        door.position[2] + (Math.cos(leafRotation) - 1) * halfWidth,
+      ]
+      : door.position;
     modules.push({
       id: `module-${door.id}`,
       kind: door.open ? "door-open" : "door-closed",
-      center: door.position,
+      center: leafCenter,
       size: [WALL_THICKNESS, WALL_HEIGHT, parameters.corridorWidth],
-      rotationY: door.open ? Math.PI / 2 : 0,
+      rotationY: leafRotation,
     });
     if (!door.open) {
       colliders.push({
@@ -205,7 +218,7 @@ export function generateMinimumDungeon(options: GenerateMinimumDungeonOptions): 
     parameters,
     grid: { width: parameters.width, height: parameters.height, cellSize: 1 },
     coordinateSystem: { up: "Y", forward: "-Z", handedness: "right" },
-    assetPack: { id: "dungeon-collection-2", version: "1" },
+    assetPack: { id: "kenney-building-kit-1.0", version: "1" },
     rooms,
     connections: [{
       id: "connection-main",

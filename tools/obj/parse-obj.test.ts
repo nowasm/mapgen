@@ -30,4 +30,18 @@ describe("Dungeon Collection OBJ conversion", () => {
 
     expect(model.positions).toEqual([0, 0, 0, 1, 0, 0, 0, 1, 0]);
   });
+
+  it("preserves face UVs and can select a named OBJ group", () => {
+    const obj = [
+      "v 0 0 0", "v 1 0 0", "v 0 1 0", "v 2 0 0",
+      "vt 0.1 0.2", "vt 0.3 0.4", "vt 0.5 0.6", "vt 0.7 0.8",
+      "g frame", "f 1/1 2/2 3/3",
+      "g door", "f 2/2 4/4 3/3",
+    ].join("\n");
+    const model = parseObj(obj, new Map(), { groups: ["door"] });
+
+    expect(model.positions).toEqual([1, 0, 0, 2, 0, 0, 0, 1, 0]);
+    expect(model.uvs).toEqual([0.3, 0.4, 0.7, 0.8, 0.5, 0.6]);
+    expect(model.bounds).toEqual({ min: [0, 0, 0], max: [2, 1, 0] });
+  });
 });

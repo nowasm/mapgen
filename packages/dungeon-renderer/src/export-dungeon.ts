@@ -2,7 +2,9 @@ import type { DungeonLayout } from "@mapgen/layout-schema";
 import { Scene } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
-import { buildDungeonScene } from "./build-dungeon-scene";
+import { buildDungeonScene, type DungeonSceneBuildOptions } from "./build-dungeon-scene";
+
+export type ExportDungeonOptions = DungeonSceneBuildOptions;
 
 export interface ExportedDungeon {
   readonly baseName: string;
@@ -54,10 +56,12 @@ async function sha256Hex(buffer: ArrayBuffer): Promise<string> {
   return Array.from(new Uint8Array(hash), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-export async function exportDungeon(layout: DungeonLayout): Promise<ExportedDungeon> {
+export async function exportDungeon(layout: DungeonLayout, options: ExportDungeonOptions = {}): Promise<ExportedDungeon> {
   const scene = new Scene();
   scene.name = "MapgenExport";
-  scene.add(buildDungeonScene(layout).root);
+  const appearance = options.appearance ?? layout.appearance;
+  const sceneOptions: DungeonSceneBuildOptions = appearance ? { ...options, appearance } : options;
+  scene.add(buildDungeonScene(layout, sceneOptions).root);
 
   const exporter = new GLTFExporter();
   const exported = await withFileReaderPolyfill(() => exporter.parseAsync(scene, {
@@ -68,7 +72,7 @@ export async function exportDungeon(layout: DungeonLayout): Promise<ExportedDung
   if (!(exported instanceof ArrayBuffer)) throw new TypeError("GLTFExporter did not return a binary GLB");
 
   const glbSha256 = await sha256Hex(exported);
-  const pairedLayout: DungeonLayout = { ...layout, glbSha256 };
+  const pairedLayout: DungeonLayout = { ...layout, ...(appearance ? { appearance } : {}), glbSha256 };
   return {
     baseName: `dungeon-${layout.exportId}`,
     glb: exported,

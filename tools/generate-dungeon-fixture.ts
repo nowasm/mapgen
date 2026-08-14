@@ -3,11 +3,14 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { exportDungeon } from "../packages/dungeon-renderer/src/index.ts";
-import { generateDungeon } from "../packages/generator-core/src/index.ts";
+import { DEFAULT_DUNGEON_PARAMETERS, generateDungeon } from "../packages/generator-core/src/index.ts";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputDirectory = resolve(repositoryRoot, "godot/test-project/fixtures");
-const layout = generateDungeon({ seed: 104729 });
+const layout = generateDungeon({
+  seed: 104729,
+  parameters: { ...DEFAULT_DUNGEON_PARAMETERS, roomCornerStyle: "round" },
+});
 const exported = await exportDungeon(layout);
 
 await mkdir(outputDirectory, { recursive: true });

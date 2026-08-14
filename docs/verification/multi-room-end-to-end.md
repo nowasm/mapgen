@@ -1,10 +1,12 @@
 # 多房间端到端验证记录
 
-- 验证日期：2026-08-13
+- 验证日期：2026-08-14
 - Godot：4.6.2 stable
 - 固定 Seed：104729
 - 固定拓扑：Hub
-- 样本规模：11 个房间、12 条走廊、24 扇门、197 个碰撞体
+- 房间角落样式：`round`
+- 视觉资源：Kenney Building Kit 独立模块
+- 样本规模：11 个房间、10 条走廊、20 个原生窄门入口、275 个视觉模块、464 个碰撞体
 
 ## 已验证链路
 
@@ -29,14 +31,14 @@ Godot 无界面测试命令：
 关键输出：
 
 ```text
-MAPGEN_GODOT_SMOKE_OK colliders=197 scene=user://mapgen-smoke-dungeon.tscn
+MAPGEN_GODOT_SMOKE_OK colliders=464 scene=user://mapgen-smoke-dungeon.tscn
 ```
 
-房间墙角与走廊端点采用无正体积相交的贴合接缝，门框拆成两根立柱和一根横梁。Dungeon Collection 2 模块按语义边界重复铺设，回归测试检查地面/墙体最终边界、两个墙体方向、门体适配、全高墙盒相交和门洞净尺寸。
+房间尺寸继续由布局参数决定，不再限制为固定 prefab。`roomCornerStyle` 在全图范围选择 `column`、`diagonal` 或 `round`：三者分别使用 `wall-corner-column`、`wall-corner-diagonal`、`wall-corner-round`；削角与圆角还分别搭配同名角落地板。直角使用 L 形盒体，削角使用斜向盒体，圆弧碰撞由每角六段盒体近似。走廊使用普通地板和两条独立侧墙。所有入口固定为原始尺寸的单开 C 型窄门：`column` 使用方形门框与 `door-rotate-square-c`，`diagonal` 和 `round` 使用圆形门框与 `door-rotate-round-c`。4 米通道也只扣除 2 米门槽，门框两侧和上方由墙体闭合；门扇打开时从侧边铰链朝所属房间内部旋转。门框使用三个简单盒体碰撞，开启门不生成门扇碰撞。
 
 ## 当前边界
 
 - 第一版只生成单层、无屋顶、普通模块化 3D 地牢。
 - 门状态在生成时固定，不提供运行时开关逻辑。
-- 墙、地板、门框和门已使用 Dungeon Collection 2 OBJ/MTL 派生视觉包；其他装饰物仍是后续工作。
+- 房间、走廊、地板、直墙、三种角落、方/圆门框和门扇已统一使用 Kenney Building Kit OBJ/MTL/PNG 派生视觉包；窗、楼梯和装饰物仍是后续工作。
 - 尚未加入第三人称斜俯视角色试玩控制器；碰撞与出生点已经可直接供 Godot 角色使用。

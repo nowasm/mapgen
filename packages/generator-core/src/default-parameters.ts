@@ -20,4 +20,8 @@ export const DEFAULT_DUNGEON_PARAMETERS: DungeonParameters = {
   linearWingChance: [0.28, 0.38],
   mirrorXChance: [0.4, 0.6],
   doorOpenRate: [0.2, 0.8],
+  roomCornerStyle: "round",
+  roomVariationRate: [0.25, 0.5],
+  floorVariationRate: [0.2, 0.4],
+  wallVariationRate: [0.15, 0.35],
 };

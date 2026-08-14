@@ -57,4 +57,17 @@ describe("generateMinimumDungeon", () => {
     expect(closed.colliders.filter(({ kind }) => kind === "door")).toHaveLength(2);
     expect(open.colliders.filter(({ kind }) => kind === "door")).toHaveLength(0);
   });
+
+  it("opens both legacy sample doors into their adjacent rooms", () => {
+    const layout = generateMinimumDungeon({ seed: 1, doorOpenRate: 1 });
+
+    for (const door of layout.doors) {
+      const room = layout.rooms.find(({ id }) => id === door.roomId)!;
+      const leaf = layout.modules.find(({ id }) => id === `module-${door.id}`)!;
+      const roomCenterX = room.x + room.width / 2 - layout.grid.width / 2;
+      const movementX = leaf.center[0] - door.position[0];
+
+      expect(movementX * (roomCenterX - door.position[0])).toBeGreaterThan(0);
+    }
+  });
 });

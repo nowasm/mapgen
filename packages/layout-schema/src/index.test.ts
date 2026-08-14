@@ -36,11 +36,12 @@ const validLayout: DungeonLayout = {
     },
   ],
   corridors: [
-    { id: "corridor-a-b", x: 12, z: 8, width: 8, depth: 4 },
+    { id: "corridor-a-b", x: 12, z: 8, width: 8, depth: 4, orientation: "horizontal" },
   ],
   doors: [
     {
       id: "door-a",
+      roomId: "room-a",
       position: [-4, 1.25, 0],
       rotationY: Math.PI / 2,
       open: true,
@@ -79,6 +80,10 @@ const dungeonParameters: DungeonParameters = {
   linearWingChance: [0.28, 0.38],
   mirrorXChance: [0.4, 0.6],
   doorOpenRate: [0.2, 0.8],
+  roomCornerStyle: "column",
+  roomVariationRate: [0.25, 0.5],
+  floorVariationRate: [0.2, 0.4],
+  wallVariationRate: [0.15, 0.35],
 };
 
 const resolvedParameters: ResolvedDungeonParameters = {
@@ -101,12 +106,61 @@ const resolvedParameters: ResolvedDungeonParameters = {
   linearWingChance: 0.33,
   mirrorXChance: 0.5,
   doorOpenRate: 0.5,
+  roomCornerStyle: "column",
+  roomVariationRate: 0.35,
+  floorVariationRate: 0.3,
+  wallVariationRate: 0.25,
 };
 
 describe("DungeonLayout runtime contract", () => {
   it("accepts a valid version 1 layout", () => {
     expect(isDungeonLayout(validLayout)).toBe(true);
     expect(assertDungeonLayout(validLayout)).toBe(validLayout);
+  });
+
+  it("accepts a portable surface appearance snapshot", () => {
+    const layout: DungeonLayout = {
+      ...validLayout,
+      appearance: {
+        materialPackId: "bricks-and-tiles-1.0",
+        wallTextureId: "bt-2-001",
+        floorTextureId: "bt-2-002",
+        doorFrameTextureId: "follow-wall",
+        wallCoverageMeters: 2,
+        floorCoverageMeters: 2,
+        doorFrameCoverageMeters: 2,
+      },
+    };
+
+    expect(assertDungeonLayout(layout)).toBe(layout);
+  });
+
+  it("rejects an invalid texture coverage size", () => {
+    expect(isDungeonLayout({
+      ...validLayout,
+      appearance: {
+        materialPackId: "bricks-and-tiles-1.0",
+        wallTextureId: "bt-2-001",
+        floorTextureId: "bt-2-002",
+        wallCoverageMeters: 0,
+        floorCoverageMeters: 2,
+      },
+    })).toBe(false);
+  });
+
+  it("rejects an invalid optional door-frame coverage size", () => {
+    expect(isDungeonLayout({
+      ...validLayout,
+      appearance: {
+        materialPackId: "bricks-and-tiles-1.0",
+        wallTextureId: "bt-2-001",
+        floorTextureId: "bt-2-002",
+        doorFrameTextureId: "follow-wall",
+        wallCoverageMeters: 2,
+        floorCoverageMeters: 2,
+        doorFrameCoverageMeters: 64,
+      },
+    })).toBe(false);
   });
 
   it("rejects an unknown schema major version", () => {
@@ -120,6 +174,24 @@ describe("DungeonLayout runtime contract", () => {
     const layout = {
       ...validLayout,
       spawn: { ...validLayout.spawn, position: [Number.NaN, 0, 0] },
+    };
+
+    expect(isDungeonLayout(layout)).toBe(false);
+  });
+
+  it("rejects an invalid optional door room reference", () => {
+    const layout = {
+      ...validLayout,
+      doors: [{ ...validLayout.doors[0], roomId: 7 }],
+    };
+
+    expect(isDungeonLayout(layout)).toBe(false);
+  });
+
+  it("rejects an invalid corridor orientation", () => {
+    const layout = {
+      ...validLayout,
+      corridors: [{ ...validLayout.corridors[0], orientation: "diagonal" }],
     };
 
     expect(isDungeonLayout(layout)).toBe(false);
@@ -159,6 +231,16 @@ describe("DungeonLayout runtime contract", () => {
     const layout = {
       ...validLayout,
       parameters: { ...dungeonParameters, roomMinSize: [14, 10] },
+      resolvedParameters,
+    };
+
+    expect(isDungeonLayout(layout)).toBe(false);
+  });
+
+  it("requires a supported room corner style", () => {
+    const layout = {
+      ...validLayout,
+      parameters: { ...dungeonParameters, roomCornerStyle: "beveled" },
       resolvedParameters,
     };
 

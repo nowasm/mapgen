@@ -25,6 +25,8 @@
     "schemaVersion": { "const": 1 },
     "generatorVersion": { "type": "string", "minLength": 1 },
     "exportId": { "type": "string", "minLength": 1 },
+    "glbSha256": { "type": "string", "minLength": 1 },
+    "appearance": { "$ref": "#/$defs/appearance" },
     "seed": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
     "parameters": {
       "oneOf": [
@@ -46,6 +48,20 @@
     "diagnostics": { "type": "object" }
   },
   "$defs": {
+    "appearance": {
+      "type": "object",
+      "required": ["materialPackId", "wallTextureId", "floorTextureId", "wallCoverageMeters", "floorCoverageMeters"],
+      "properties": {
+        "materialPackId": { "type": "string", "minLength": 1 },
+        "wallTextureId": { "type": "string", "minLength": 1 },
+        "floorTextureId": { "type": "string", "minLength": 1 },
+        "doorFrameTextureId": { "type": "string", "minLength": 1 },
+        "wallCoverageMeters": { "type": "number", "minimum": 0.25, "maximum": 32 },
+        "floorCoverageMeters": { "type": "number", "minimum": 0.25, "maximum": 32 },
+        "doorFrameCoverageMeters": { "type": "number", "minimum": 0.25, "maximum": 32 }
+      },
+      "additionalProperties": false
+    },
     "range": {
       "type": "array",
       "prefixItems": [{ "type": "number" }, { "type": "number" }],
@@ -69,7 +85,8 @@
         "width", "height", "mode", "layoutWeights", "largeCellSize", "roomRate", "roomSize",
         "roomMinSize", "roomMaxSize", "roomCountMin", "roomCountMax", "corridorWidth", "loopRate",
         "deadEndRate", "branchTryMultiplier", "branchFromProtectedChance", "linearWingChance",
-        "mirrorXChance", "doorOpenRate"
+        "mirrorXChance", "doorOpenRate", "roomCornerStyle", "roomVariationRate",
+        "floorVariationRate", "wallVariationRate"
       ],
       "properties": {
         "width": { "type": "integer", "minimum": 16, "maximum": 512 },
@@ -99,7 +116,11 @@
         "branchFromProtectedChance": { "$ref": "#/$defs/range" },
         "linearWingChance": { "$ref": "#/$defs/range" },
         "mirrorXChance": { "$ref": "#/$defs/range" },
-        "doorOpenRate": { "$ref": "#/$defs/range" }
+        "doorOpenRate": { "$ref": "#/$defs/range" },
+        "roomCornerStyle": { "enum": ["column", "diagonal", "round"] },
+        "roomVariationRate": { "$ref": "#/$defs/range" },
+        "floorVariationRate": { "$ref": "#/$defs/range" },
+        "wallVariationRate": { "$ref": "#/$defs/range" }
       },
       "additionalProperties": false
     },
@@ -109,7 +130,8 @@
         "width", "height", "topology", "largeCellSize", "roomRate", "roomSize", "roomMinSize",
         "roomMaxSize", "roomCountMin", "roomCountMax", "roomCount", "corridorWidth", "loopRate",
         "deadEndRate", "branchTryMultiplier", "branchFromProtectedChance", "linearWingChance",
-        "mirrorXChance", "doorOpenRate"
+        "mirrorXChance", "doorOpenRate", "roomCornerStyle", "roomVariationRate",
+        "floorVariationRate", "wallVariationRate"
       ],
       "properties": {
         "width": { "type": "integer" },
@@ -130,7 +152,11 @@
         "branchFromProtectedChance": { "type": "number" },
         "linearWingChance": { "type": "number" },
         "mirrorXChance": { "type": "number" },
-        "doorOpenRate": { "type": "number" }
+        "doorOpenRate": { "type": "number" },
+        "roomCornerStyle": { "enum": ["column", "diagonal", "round"] },
+        "roomVariationRate": { "type": "number" },
+        "floorVariationRate": { "type": "number" },
+        "wallVariationRate": { "type": "number" }
       },
       "additionalProperties": false
     }

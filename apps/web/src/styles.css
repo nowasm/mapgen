@@ -64,6 +64,7 @@ h1 { margin: 0; font: 400 38px/.95 "Baskerville", "Times New Roman", serif; lett
 .control-triplet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .control-rail details { margin: 0 0 15px; border-top: 1px solid #333a31; }
 .control-rail summary { padding: 11px 0; cursor: pointer; color: #c7bfab; font-size: 11px; letter-spacing: .08em; }
+.control-help { margin: 0 0 14px; color: #737c70; font-size: 10px; line-height: 1.5; }
 .range-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 0 0 10px; padding: 7px 0 0; border: 0; }
 .range-pair legend { grid-column: 1 / -1; padding: 0; color: #8f9788; font-size: 10px; }
 .range-pair label, .control-triplet label { margin-bottom: 0; gap: 4px; }
